@@ -6,7 +6,7 @@ import test
 def test_assignment_2_folder_structure():
     test.check_assignment_folder_structure(
         "Assignment 2",
-        r"activity *1\.(fprg|txt|js)|package-lock.json")
+        r"activity( *|_)#?1\.(fprg|txt|cs|java|js|py)|package-lock.json")
 
 
 def test_assignment_2_required_flowgorithm_files():

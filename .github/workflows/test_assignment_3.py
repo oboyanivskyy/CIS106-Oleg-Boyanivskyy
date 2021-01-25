@@ -6,7 +6,7 @@ import test
 def test_assignment_3_folder_structure():
     test.check_assignment_folder_structure(
         "Assignment 3",
-        r"(activity *#?\d\.(fprg|cs|java|js|py))|test.csproj")
+        r"(activity( *|_)#?\d\.(fprg|cs|java|js|py))|test.csproj")
 
 
 def test_assignment_3_required_flowgorithm_files():
@@ -60,6 +60,10 @@ def test_assignment_3_activity_1_source_code_comment_formatting():
 
 def test_assignment_3_activity_1_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 1")
+
+
+def test_assignment_3_activity_1_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 1")
 
 
 def test_assignment_3_activity_1_source_code_operator_formatting():
@@ -215,6 +219,10 @@ def test_assignment_3_activity_2_source_code_comment_formatting():
 
 def test_assignment_3_activity_2_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 2")
+
+
+def test_assignment_3_activity_2_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 2")
 
 
 def test_assignment_3_activity_2_source_code_operator_formatting():
@@ -375,6 +383,10 @@ def test_assignment_3_activity_3_source_code_comment_formatting():
 
 def test_assignment_3_activity_3_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 3")
+
+
+def test_assignment_3_activity_3_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 3")
 
 
 def test_assignment_3_activity_3_source_code_operator_formatting():
@@ -577,6 +589,10 @@ def test_assignment_3_activity_4_source_code_comment_formatting():
 
 def test_assignment_3_activity_4_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 4")
+
+
+def test_assignment_3_activity_4_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 4")
 
 
 def test_assignment_3_activity_4_source_code_operator_formatting():
@@ -896,6 +912,10 @@ def test_assignment_3_activity_5_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 5")
 
 
+def test_assignment_3_activity_5_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 5")
+
+
 def test_assignment_3_activity_5_source_code_operator_formatting():
     test.check_source_code_operator_formatting("Assignment 3", "Activity 5")
 
@@ -992,6 +1012,10 @@ def test_assignment_3_activity_6_source_code_comment_formatting():
 
 def test_assignment_3_activity_6_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 6")
+
+
+def test_assignment_3_activity_6_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 6")
 
 
 def test_assignment_3_activity_6_source_code_operator_formatting():
@@ -1091,6 +1115,10 @@ def test_assignment_3_activity_7_source_code_comment_formatting():
 
 def test_assignment_3_activity_7_source_code_identifier_formatting():
     test.check_source_code_identifier_formatting("Assignment 3", "Activity 7")
+
+
+def test_assignment_3_activity_7_source_code_identifier_length():
+    test.check_source_code_identifier_length("Assignment 3", "Activity 7")
 
 
 def test_assignment_3_activity_7_source_code_operator_formatting():

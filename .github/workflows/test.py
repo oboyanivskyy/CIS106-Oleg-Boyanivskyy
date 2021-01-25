@@ -716,6 +716,33 @@ def check_source_code_identifier_formatting(assignment, activity):
         pass
 
 
+def check_source_code_identifier_length(assignment, activity):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    if not filename:
+        pytest.skip()
+        return
+
+    text = read_file(path, filename)
+
+    pattern = r"(\w+) *="
+    matches = re.findall(pattern, text)
+    variables = []
+    for match in matches:
+        if len(match) == 1:
+            variables.append(match)
+    variables = sorted(list(set(variables)))
+
+    assert len(variables) == 0, \
+        f"{assignment} {filename} " \
+        "needs meaningful identifiers. Avoid abbreviations. " \
+        f"Found:\n{variables}"
+
+
 def check_source_code_line_spacing(assignment, activity):
     path = get_path(assignment)
     if not path:
@@ -1372,19 +1399,4 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    text = read_file(
-        "/Users/davebraunschweig/Desktop/Grading/cis106-david-braunschweig/Assignment 5", 
-        "Activity 1.cs")
-
-    functions = get_csharp_functions(text)
-    for function in functions:
-        print(function["text"])
-        print("------------------------------------------------")
-    # check_javascript_output(
-    #     "Assignment 3", 
-    #     "Activity 1",
-    #     "",
-    #     "10\n15\n",
-    #     "150",
-    #     "Calculation"
-    #     )
+    check_source_code_identifier_length("Assignment 3", "Activity 7")
