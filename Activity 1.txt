@@ -1,0 +1,4 @@
+Function Main
+    ... This will display "Hello, world!" in the console.
+    Output "Hello, World!"
+End
