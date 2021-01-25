@@ -8,6 +8,7 @@ import subprocess
 
 _output_cache = []
 
+
 def add_csharp_project(path, filename):
     try:
         with open(os.path.join(path, filename), "r") as file:
@@ -16,7 +17,7 @@ def add_csharp_project(path, filename):
         pattern = "public class .+?\n"
         match = re.search(pattern, text)
         assert match, \
-            f"{filename} could not find public class name"
+        f"{filename} could not find public class name"
         
         class_name = filename.replace(".cs", "").replace("\\", "").replace(" ", "")
 
@@ -1178,7 +1179,7 @@ def get_csharp_functions(text):
     for index in range(len(matches)):
         match = matches[index]
         function = {}
-        function["name"] = match.group(3)
+        function ["name"] = match.group(3)
         function ["type"] = match.group(2)
         function["parameters"] = match.group(4)
         if index < len(matches) - 1:
@@ -1187,8 +1188,8 @@ def get_csharp_functions(text):
                 text[match.start(0):next_match.start(0)].strip()
         else:
             function_text = text[match.start(0):].strip()
-            if function_text.count("}") > function_text.count("{"):
-                function_text = re.sub("}$", "", function_text).strip()
+            if function_text.count("}") > function_text.count("{")
+            function_text = re.sub("}$", "", function_text).strip()
         
         function_text = re.sub("}.+?$", "", function_text, flags=re.DOTALL)
         function["text"] = function_text
@@ -1218,7 +1219,7 @@ def get_csharp_output(assignment, activity, input):
                 stderr=subprocess.PIPE,
                 text=True)
             output_cache(path, filename, input, output)
-        except subprocess.CalledProcessError as exception:
+            except subprocess.CalledProcessError as exception:
             output_cache(path, filename, input, 
                 f"{exception.output}\n"
                 f"{exception.stderr}")
