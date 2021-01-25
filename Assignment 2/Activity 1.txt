@@ -1,4 +1,4 @@
 Function Main
-    ... This will display "Hello, world!" in the console.
-    Output "Hello, World!"
+    ... This program will display "Hello Oleg" in the console
+    Output "Hello Oleg!"
 End

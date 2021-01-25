@@ -1,2 +1,2 @@
-# This will display "Hello, world!" in the console.
-print("Hello, World!")
+# This program will display "Hello Oleg" in the console
+print("Hello Oleg!")

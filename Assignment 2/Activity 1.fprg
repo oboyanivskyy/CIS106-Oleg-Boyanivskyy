@@ -4,15 +4,15 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="OLEG"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2021-01-25 11:35:23 AM"/>
+        <attribute name="saved" value="2021-01-25 01:26:16 PM"/>
         <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMS0yNDsxMDo0Nzo0MSBQTTsyNjQz"/>
-        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMS0yNTsxMTozNToyMyBBTTsyOzI3MzY="/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMS0yNTswMToyNjoxNiBQTTszOzI3NTM="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <comment text="This will display &quot;Hello, world!&quot; in the console."/>
-            <output expression="&quot;Hello, World!&quot;" newline="True"/>
+            <comment text="This program will display &quot;Hello Oleg&quot; in the console"/>
+            <output expression="&quot;Hello Oleg!&quot;" newline="True"/>
         </body>
     </function>
 </flowgorithm>
