@@ -11,7 +11,7 @@
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <comment text="This program will display &quot;Hello Oleg&quot; in the console"/>
+            <comment text="This program will display &quot;Hello Oleg!&quot; in the console"/>
             <output expression="&quot;Hello Oleg!&quot;" newline="True"/>
         </body>
     </function>
