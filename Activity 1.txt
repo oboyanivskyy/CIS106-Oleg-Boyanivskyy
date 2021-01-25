@@ -1,4 +1,0 @@
-Function Main
-    ... This program will display "Hello Oleg" in the console
-    Output "Hello Oleg!"
-End
