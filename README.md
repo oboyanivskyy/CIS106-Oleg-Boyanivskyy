@@ -6,3 +6,4 @@ I'm taking this course because I switched majors from Nursing to Information Sys
 
 ## Assignment 2
 
+After thoughtful consideration, I decided that I will be picking Python as my preferred programming language to learn for this course. I picked this language because after reading into each one, I determined that this language would be easiest to start out with. I also noticed that Python is still a popular language in today's world and it would be beneficial to have that knowledge. I intend to use this programming language to develop my first programs as a programmer. The IDE that I used to test is Thonny, and my code ran without issues. Since this is the IDE that was recommended to use to start with for Python, that's the main reason why I will be using it. The other IDE I tested was the one included with Python itself when you download it. Even though it is the official one included, I will still use Thonny.
