@@ -8,6 +8,7 @@ import subprocess
 
 _output_cache = []
 
+
 def add_csharp_project(path, filename):
     try:
         with open(os.path.join(path, filename), "r") as file:
@@ -17,13 +18,13 @@ def add_csharp_project(path, filename):
         match = re.search(pattern, text)
         assert match, \
             f"{filename} could not find public class name"
-        
+
         class_name = filename.replace(".cs", "").replace("\\", "").replace(" ", "")
 
         text = text.replace(match.group(0), f"public class {class_name}\n")
         with open(os.path.join(path, filename), "w") as file:
             file.write(text)
-        
+
         with open(os.path.join(path, "test.csproj"), "w") as file:
             file.write(
                 "<Project Sdk=\"Microsoft.NET.Sdk\">\n"
@@ -141,7 +142,7 @@ def check_file_contains(assignment, activity, file_extension,
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + file_extension)
+    filename = get_filename(path, activity + r"\." + file_extension)
     if not filename:
         pytest.skip()
         return
@@ -160,7 +161,7 @@ def check_file_does_not_contain(assignment, activity, file_extension,
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + file_extension)
+    filename = get_filename(path, activity + r"\." + file_extension)
     if not filename:
         pytest.skip()
         return
@@ -1179,7 +1180,7 @@ def get_csharp_functions(text):
         match = matches[index]
         function = {}
         function["name"] = match.group(3)
-        function ["type"] = match.group(2)
+        function["type"] = match.group(2)
         function["parameters"] = match.group(4)
         if index < len(matches) - 1:
             next_match = matches[index + 1]
@@ -1189,7 +1190,7 @@ def get_csharp_functions(text):
             function_text = text[match.start(0):].strip()
             if function_text.count("}") > function_text.count("{"):
                 function_text = re.sub("}$", "", function_text).strip()
-        
+
         function_text = re.sub("}.+?$", "", function_text, flags=re.DOTALL)
         function["text"] = function_text
         functions.append(function)
@@ -1219,7 +1220,7 @@ def get_csharp_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input, 
+            output_cache(path, filename, input,
                 f"{exception.output}\n"
                 f"{exception.stderr}")
 
@@ -1231,6 +1232,7 @@ def get_file_type(file_extension):
         "cs": "C#",
         "java": "Java",
         "js": "JavaScript",
+        "lua": "Lua",
         "py": "Python",
         "txt": "pseudocode"
     }
@@ -1296,8 +1298,8 @@ def get_javascript_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input, 
-                f"{exception.output}\n" \
+            output_cache(path, filename, input,
+                f"{exception.output}\n"
                 f"{exception.stderr}")
 
     return output
@@ -1384,7 +1386,7 @@ def output_cache(path, filename, input, output=None):
             entry["filename"] == filename and \
             entry["input"] == input:
             return entry["output"]
-    
+
     return None
 
 

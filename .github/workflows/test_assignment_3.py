@@ -335,7 +335,7 @@ def test_assignment_3_activity_2_minutes_calculation():
     test.check_file_does_not_contain(
         "Assignment 3",
         "Activity 2",
-        r"\.(cs|java|js|py)",
+        r"(cs|java|js|py)",
         "minute",
         "processing error. Processing should not include minutes.")
 
@@ -405,7 +405,7 @@ def test_assignment_3_activity_3_source_code_file_contains():
     test.check_file_contains(
         "Assignment 3",
         "Activity 3",
-        r"\.(cs|java|js|py)",
+        r"(cs|java|js|py)",
         "feet|meter",
         "must include output labels with either feet or meters.")
 
@@ -611,7 +611,7 @@ def test_assignment_3_activity_4_source_code_file_contains():
     test.check_file_contains(
         "Assignment 3",
         "Activity 4",
-        r"\.(cs|java|js|py)",
+        r"(cs|java|js|py)",
         "triangle|rectangle|trapezoid|ellipse|"
             "square|parallelogram|circle|sector",
         "must indicate shape type.")

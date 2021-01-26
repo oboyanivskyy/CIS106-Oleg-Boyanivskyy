@@ -34,6 +34,15 @@ def test_assignment_2_activity_1_flowgorithm_has_matching_source_code_file():
         "Assignment 2", "Activity 1")
 
 
+def test_assignment_2_activity_1_flowgorithm_does_not_contain():
+    test.check_file_does_not_contain(
+        "Assignment 2",
+        "Activity 1",
+        "fprg",
+        "world",
+        "Requirements are to change \"world\" to your name.")
+
+
 def test_assignment_2_activity_1_pseudocode_comments():
     test.check_source_code_comments("Assignment 2", "Activity 1", 1, "txt")
 
@@ -42,8 +51,26 @@ def test_assignment_2_activity_1_pseudocode_output():
     test.check_pseudocode_output("Assignment 2", "Activity 1", 1)
 
 
+def test_assignment_2_activity_1_pseudocode_does_not_contain():
+    test.check_file_does_not_contain(
+        "Assignment 2",
+        "Activity 1",
+        "txt",
+        "world",
+        "Requirements are to change \"world\" to your name.")
+
+
 def test_assignment_2_activity_1_source_code_comments():
     test.check_source_code_comments("Assignment 2", "Activity 1", 1)
+
+
+def test_assignment_2_activity_1_source_code_does_not_contain():
+    test.check_file_does_not_contain(
+        "Assignment 2",
+        "Activity 1",
+        "(cs|java|js|py)",
+        "world",
+        "Requirements are to change \"world\" to your name.")
 
 
 def test_assignment_2_activity_1_source_code_output():
