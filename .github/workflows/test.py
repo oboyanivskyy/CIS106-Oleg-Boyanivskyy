@@ -19,7 +19,8 @@ def add_csharp_project(path, filename):
         assert match, \
             f"{filename} could not find public class name"
 
-        class_name = filename.replace(".cs", "").replace("\\", "").replace(" ", "")
+        class_name = \
+            filename.replace(".cs", "").replace("\\", "").replace(" ", "")
 
         text = text.replace(match.group(0), f"public class {class_name}\n")
         with open(os.path.join(path, filename), "w") as file:
@@ -207,7 +208,7 @@ def check_flowgorithm_has_matching_source_code_file(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     assert filename, \
         f"{assignment} {activity} " \
         "Flowgorithm file is missing matching source code file."
@@ -596,7 +597,7 @@ def check_source_code_comma_formatting(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -645,40 +646,6 @@ def check_source_code_comment_formatting(assignment, activity):
         "should include a blank line after comment."
 
 
-def check_python_functions(assignment, activity, count):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.fprg")
-    if filename:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.py")
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-
-    functions = get_python_functions(text)
-    for index in range(len(functions)):
-        functions[index] = functions[index]["name"]
-
-    assert len(functions) >= count, \
-        f"{assignment} {activity} requires {count} function(s). " \
-        f"Found {len(functions)}.\n{functions}"
-
-    for function in functions:
-        if function == "main":
-            continue
-        assert "_" in function, \
-            "Python functions follow snake_case naming convention. " \
-            f"Found {function}. Use a verb_noun combination."
-
-
 def check_source_code_identifier_formatting(assignment, activity):
     path = get_path(assignment)
     if not path:
@@ -690,7 +657,7 @@ def check_source_code_identifier_formatting(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -699,7 +666,7 @@ def check_source_code_identifier_formatting(assignment, activity):
 
     pattern = r"(\w+) *="
     matches = re.findall(pattern, text)
-    if ".py" in filename:
+    if ".lua" in filename or ".py" in filename:
         variables = []
         for match in matches:
             if match == match.upper():
@@ -723,7 +690,7 @@ def check_source_code_identifier_length(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -755,7 +722,7 @@ def check_source_code_line_spacing(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -770,42 +737,13 @@ def check_source_code_line_spacing(assignment, activity):
         "Separate comments, input, processing, and output with a blank line."
 
 
-def check_python_input_functions(assignment, activity, count):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.fprg")
-    if filename:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.py")
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-    functions = get_python_functions(text)
-
-    matches = []
-    for function in functions:
-        if "input(" in function["text"]:
-            matches.append(function["name"])
-
-    assert len(matches) >= count, \
-        f"{assignment} {activity} requires {count} input function(s). " \
-        f"Found {len(matches)}.\n{matches}"
-
-
 def check_source_code_inputs(assignment, activity, count):
     path = get_path(assignment)
     if not path:
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -818,6 +756,8 @@ def check_source_code_inputs(assignment, activity, count):
         assert False, "Not implemented"
     elif ".js" in filename:
         pattern = r"prompt\("
+    elif ".lua" in filename:
+        pattern = r"io\.read\("
     elif ".py" in filename:
         pattern = r"input\("
     else:
@@ -827,43 +767,6 @@ def check_source_code_inputs(assignment, activity, count):
     assert len(matches) >= count, \
         f"{assignment} {activity} requires {count} input statement(s). " \
         f"Found {len(matches)}."
-
-
-def check_python_main_function(assignment, activity):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.fprg")
-    if filename:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.py")
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-
-    assert "def main(" in text, \
-        f"{assignment} {activity} missing main function."
-
-    functions = get_python_functions(text)
-    for function in functions:
-        if function["name"] != "main":
-            continue
-
-        assert "input(" not in function["text"], \
-            f"{assignment} {activity} " \
-            "main function should not have input statements. " \
-            "Use an input function instead."
-
-        assert "print(" not in function["text"], \
-            f"{assignment} {activity} " \
-            "main function should not have output statements. " \
-            "Use an output function instead."
 
 
 def check_source_code_operator_formatting(assignment, activity):
@@ -877,7 +780,7 @@ def check_source_code_operator_formatting(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -966,38 +869,13 @@ def check_python_output_functions(assignment, activity, count):
         f"Found {len(matches)}.\n{matches}"
 
 
-def check_python_process_formatting(assignment, activity):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.fprg")
-    if filename:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.py")
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-
-    pattern = r"\w+ *=.+?\n\nprint\("
-    matches = re.findall(pattern, text)
-    assert len(matches) >= 1, \
-        f"{assignment} {filename} " \
-        "should include a blank line between processing and output."
-
-
 def check_source_code_processing(assignment, activity, count):
     path = get_path(assignment)
     if not path:
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -1010,40 +888,6 @@ def check_source_code_processing(assignment, activity, count):
         f"{assignment} {activity} requires {count} assignment statement(s). " \
         f"Found {len(matches)}. " \
         "Use intermediate variables for processing."
-
-
-def check_python_processing_functions(assignment, activity, count):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.fprg")
-    if filename:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.py")
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-    functions = get_python_functions(text)
-
-    matches = []
-    for function in functions:
-        if "input(" in function["text"]:
-            continue
-
-        if "print(" in function["text"]:
-            continue
-
-        matches.append(function["name"])
-
-    assert len(matches) >= count, \
-        f"{assignment} {activity} requires {count} processing function(s). " \
-        f"Found {len(matches)}.\n{matches}"
 
 
 def check_readme_assignment_heading(assignment):
@@ -1097,7 +941,7 @@ def check_required_files(assignment, file_extension, count):
 
 
 def check_source_code_comments(assignment, activity, count,
-    file_extension="(cs|java|js|py)"):
+    file_extension="(cs|java|js|lua|py)"):
 
     path = get_path(assignment)
     if not path:
@@ -1115,6 +959,8 @@ def check_source_code_comments(assignment, activity, count,
         pattern = "<comment text="
     elif file_extension == "txt":
         pattern = "... "
+    elif ".lua" in filename:
+        pattern = "^--"
     elif ".py" in filename:
         pattern = "^#"
     else:
@@ -1133,7 +979,7 @@ def check_source_code_output(assignment, activity, file_pattern,
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
     if not filename:
         pytest.skip()
         return
@@ -1152,6 +998,8 @@ def check_source_code_output(assignment, activity, file_pattern,
         output = get_java_output(assignment, activity, input)
     elif ".js" in filename:
         output = get_javascript_output(assignment, activity, input)
+    elif ".lua" in filename:
+        output = get_lua_output(assignment, activity, input)
     elif ".py" in filename:
         output = get_python_output(assignment, activity, input)
     else:
@@ -1210,7 +1058,8 @@ def get_csharp_output(assignment, activity, input):
     output = output_cache(path, filename, input)
     if output is None:
         add_csharp_project(path, filename)
-        args = "dotnet run --project " + os.path.join(path, "test.csproj").replace(" ", "\\ ")
+        args = "dotnet run --project " + \
+            os.path.join(path, "test.csproj").replace(" ", "\\ ")
         try:
             output = subprocess.check_output(
                 args,
@@ -1289,6 +1138,35 @@ def get_javascript_output(assignment, activity, input):
         add_javascript_window_methods(path, filename)
         add_javascript_main_call(path, filename)
         args = "node " + os.path.join(path, filename).replace(" ", "\\ ")
+        try:
+            output = subprocess.check_output(
+                args,
+                input=input,
+                shell=True,
+                stderr=subprocess.PIPE,
+                text=True)
+            output_cache(path, filename, input, output)
+        except subprocess.CalledProcessError as exception:
+            output_cache(path, filename, input,
+                f"{exception.output}\n"
+                f"{exception.stderr}")
+
+    return output
+
+
+def get_lua_output(assignment, activity, input):
+    path = get_path(assignment)
+    if not path:
+        return None
+
+    filename = get_filename(path, activity + r"\.lua")
+    if not filename:
+        return None
+
+    output = output_cache(path, filename, input)
+
+    if output is None:
+        args = "lua " + os.path.join(path, filename).replace(" ", "\\ ")
         try:
             output = subprocess.check_output(
                 args,
@@ -1401,4 +1279,5 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    check_source_code_identifier_length("Assignment 3", "Activity 7")
+    result = get_lua_output("Assignment 2", "Activity 1", "")
+    print(result)

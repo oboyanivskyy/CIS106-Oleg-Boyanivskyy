@@ -6,11 +6,12 @@ import test
 def test_assignment_4_folder_structure():
     test.check_assignment_folder_structure(
         "Assignment 4",
-        r"activity( *|_)#?\d\.(fprg|cs|java|js|py)")
+        r"activity( *|_)#?\d\.(fprg|cs|java|js|lua|py)|"
+        "package-lock.json|test.csproj")
 
 
 def test_assignment_4_required_source_code_files():
-    test.check_required_files("Assignment 4", "(cs|java|js|py)", 2)
+    test.check_required_files("Assignment 4", "(cs|java|js|lua|py)", 2)
 
 
 def test_assignment_4_activity_1_source_code_comments():
@@ -274,7 +275,7 @@ def test_assignment_4_activity_2_minutes_calculation():
     test.check_file_does_not_contain(
         "Assignment 4",
         "Activity 2",
-        r"(cs|java|js|py)",
+        r"(cs|java|js|lua|py)",
         "minute",
         "processing error. Processing should not include minutes.")
 
@@ -319,7 +320,7 @@ def test_assignment_4_activity_3_source_code_file_contains():
     test.check_file_contains(
         "Assignment 4",
         "Activity 3",
-        r"(cs|java|js|py)",
+        r"(cs|java|js|lua|py)",
         "feet|meter",
         "must include output labels with either feet or meters.")
 
@@ -494,7 +495,7 @@ def test_assignment_4_activity_4_source_code_file_contains():
     test.check_file_contains(
         "Assignment 4",
         "Activity 4",
-        r"(cs|java|js|py)",
+        r"(cs|java|js|lua|py)",
         "triangle|rectangle|trapezoid|ellipse|"
             "square|parallelogram|circle|sector",
         "must indicate shape type.")

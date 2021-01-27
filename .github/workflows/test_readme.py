@@ -16,18 +16,27 @@ def test_readme():
     path = os.getcwd()
     filename = "README.md"
     text = test.read_file(path, filename)
-    path = os.path.join(os.getcwd(), "README.md")
-    if not os.path.isfile(path):
-        assert False, "Could not find file named \"README.md\"."
-
-    with open(path, "r") as file:
-        text = file.read()
+    assert text, "Could not find file named \"README.md\"."
 
     pattern = r"# cis[ \-]*106[ \-]\w+[ \-]\w+"
     regex = re.compile(pattern, re.IGNORECASE)
     match = regex.search(text)
-    if not match:
-        assert False, "README.md missing required # CIS 106 Your Name heading."
+    assert match, "README.md missing required # CIS 106 Your Name heading."
+
+
+def test_capitalize_proper_nouns():
+    path = os.getcwd()
+    filename = "README.md"
+    text = test.read_file(path, filename)
+    if not text:
+        return
+
+    pattern = "flowgorithm|javascript|python"
+    matches = re.findall(pattern, text)
+    matches = sorted(list(set(matches)))
+    assert len(matches) == 0, \
+        "README.md capitalize proper nouns. " \
+        f"Found:\n{matches}"
 
 
 def test_readme_assignment_1():
