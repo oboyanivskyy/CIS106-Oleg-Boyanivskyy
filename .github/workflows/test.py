@@ -567,6 +567,21 @@ def check_overall_folder_structure(pattern):
         f"Unexpected folder name(s)\n{folders}"
 
 
+def check_overall_file_structure(pattern):
+    files = []
+    regex = re.compile(pattern, re.IGNORECASE)
+    with os.scandir(os.getcwd()) as iterator:
+        for entry in iterator:
+            if entry.is_file():
+                match = regex.match(entry.name)
+                if not match:
+                    files.append(entry.name)
+    assert len(files) == 0, \
+        "Unexpected root folder file name(s). " \
+        "Use separate folders for each assignment. " \
+        f"Found:\n{files}"
+
+
 def check_pseudocode_output(assignment, activity, count):
     path = get_path(assignment)
     if not path:
@@ -617,6 +632,108 @@ def check_source_code_comma_formatting(assignment, activity):
         f"has non-standard spacing around commas.\nFound: {matches}"
 
 
+def check_python_formatting(assignment, activity):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.fprg")
+    if filename:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.py")
+    if not filename:
+        pytest.skip()
+        return
+
+    try:
+        args = "flake8 " + \
+            "--ignore=E125,E127,E128,E131,E722,W292,W293,W504 " + \
+            os.path.join(path, filename).replace(" ", "\\ ")
+        output = subprocess.check_output(
+            args,
+            shell=True,
+            stderr=subprocess.PIPE,
+            text=True)
+    except subprocess.CalledProcessError as exception:
+        output = exception.output
+        output = output.replace(path + "/", "")
+
+        assert not output, \
+            f"{assignment} {activity} " \
+            f"Python source code formatting:\n{output}\n"
+
+
+def check_python_output(assignment, activity, file_pattern,
+    input, output_pattern, message):
+
+    if file_pattern:
+        path = get_path(assignment)
+        if not path:
+            pytest.skip()
+            return
+
+        filename = get_filename(path, activity + r"\.py")
+        if not filename:
+            pytest.skip()
+            return
+
+        text = read_file(path, filename)
+        regex = re.compile(file_pattern, re.IGNORECASE)
+        match = regex.search(text)
+        if not match:
+            pytest.skip()
+            return
+
+    output = get_python_output(assignment, activity, input)
+    if output is None:
+        pytest.skip()
+        return
+
+    regex = re.compile(output_pattern, re.IGNORECASE)
+    match = regex.search(output)
+    assert match, \
+        f"{assignment} {activity} {message}\n" \
+        f"Input:\n{input}\n" \
+        f"Output:\n{output}"
+
+
+def check_python_output_functions(assignment, activity, count):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.fprg")
+    if filename:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.py")
+    if not filename:
+        pytest.skip()
+        return
+
+    text = read_file(path, filename)
+    functions = get_python_functions(text)
+
+    matches = []
+    for function in functions:
+        if "input(" in function["text"]:
+            continue
+
+        if "print(" not in function["text"]:
+            continue
+
+        matches.append(function["name"])
+
+    assert len(matches) >= count, \
+        f"{assignment} {activity} requires {count} output function(s). " \
+        f"Found {len(matches)}.\n{matches}"
+
+
 def check_source_code_comment_formatting(assignment, activity):
     path = get_path(assignment)
     if not path:
@@ -636,14 +753,49 @@ def check_source_code_comment_formatting(assignment, activity):
     text = read_file(path, filename)
 
     if ".py" in filename:
-        pattern = r"^#.+?\n\n"
+        pattern = r"(^#.+?\n)*\n"
     else:
-        pattern = r"^\/\/.+?\n\n"
+        pattern = r"(^\/\/.+?\n)*\n"
+
+    matches = re.findall(pattern, text, flags=re.MULTILINE)
+    assert len(matches) >= 1, \
+        f"{assignment} {filename} " \
+        "should include a blank line after comment."
 
     matches = re.findall(pattern, text)
     assert len(matches) >= 1, \
         f"{assignment} {filename} " \
         "should include a blank line after comment."
+
+
+def check_source_code_formatting(assignment, activity):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.fprg")
+    if filename:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
+    if not filename:
+        pytest.skip()
+        return
+
+    if ".cs" in filename:
+        assert False, "Not implemented"
+    elif ".java" in filename:
+        assert False, "Not implemented"
+    elif ".js" in filename:
+        assert False, "Not implemented"
+    elif ".lua" in filename:
+        assert False, "Not implemented"
+    elif ".py" in filename:
+        check_python_formatting(assignment, activity)
+    else:
+        assert False, f"Unexpected file type for {filename}"
 
 
 def check_source_code_identifier_formatting(assignment, activity):
@@ -799,74 +951,6 @@ def check_source_code_operator_formatting(assignment, activity):
     assert len(matches) == 0, \
         f"{assignment} {filename} " \
         f"is missing spaces around operators.\nFound: {matches}"
-
-
-def check_python_output(assignment, activity, file_pattern,
-    input, output_pattern, message):
-
-    if file_pattern:
-        path = get_path(assignment)
-        if not path:
-            pytest.skip()
-            return
-
-        filename = get_filename(path, activity + r"\.py")
-        if not filename:
-            pytest.skip()
-            return
-
-        text = read_file(path, filename)
-        regex = re.compile(file_pattern, re.IGNORECASE)
-        match = regex.search(text)
-        if not match:
-            pytest.skip()
-            return
-
-    output = get_python_output(assignment, activity, input)
-    if output is None:
-        pytest.skip()
-        return
-
-    regex = re.compile(output_pattern, re.IGNORECASE)
-    match = regex.search(output)
-    assert match, \
-        f"{assignment} {activity} {message}\n" \
-        f"Input:\n{input}\n" \
-        f"Output:\n{output}"
-
-
-def check_python_output_functions(assignment, activity, count):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.fprg")
-    if filename:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\.py")
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-    functions = get_python_functions(text)
-
-    matches = []
-    for function in functions:
-        if "input(" in function["text"]:
-            continue
-
-        if "print(" not in function["text"]:
-            continue
-
-        matches.append(function["name"])
-
-    assert len(matches) >= count, \
-        f"{assignment} {activity} requires {count} output function(s). " \
-        f"Found {len(matches)}.\n{matches}"
 
 
 def check_source_code_processing(assignment, activity, count):
@@ -1279,5 +1363,5 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    result = get_lua_output("Assignment 2", "Activity 1", "")
+    result = check_source_code_formatting("Assignment 5", "Activity 2")
     print(result)

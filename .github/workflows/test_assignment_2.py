@@ -6,7 +6,7 @@ import test
 def test_assignment_2_folder_structure():
     test.check_assignment_folder_structure(
         "Assignment 2",
-        r"activity( *|_)#?1\.(fprg|txt|cs|java|js|py)|package-lock.json")
+        r"activity( *|_)#?1\.(fprg|txt|cs|java|js|lua|py)|package-lock.json")
 
 
 def test_assignment_2_required_flowgorithm_files():
@@ -18,7 +18,7 @@ def test_assignment_2_required_pseudocode_files():
 
 
 def test_assignment_2_required_source_code_files():
-    test.check_required_files("Assignment 2", "(cs|java|js|py)", 1)
+    test.check_required_files("Assignment 2", "(cs|java|js|lua|py)", 1)
 
 
 def test_assignment_2_activity_1_flowgorithm_comments():
@@ -68,7 +68,7 @@ def test_assignment_2_activity_1_source_code_does_not_contain():
     test.check_file_does_not_contain(
         "Assignment 2",
         "Activity 1",
-        "(cs|java|js|py)",
+        "(cs|java|js|lua|py)",
         "world",
         "Requirements are to change \"world\" to your name.")
 

@@ -9,6 +9,11 @@ def test_overall_folder_structure():
             r"node_modules|(\..*)")
 
 
+def test_overall_file_structure():
+    test.check_overall_file_structure(
+        pattern=r"readme.md|\..*")
+
+
 def test_assignment_1_folder_structure():
     test.check_assignment_folder_structure(
         assignment="Assignment 1",

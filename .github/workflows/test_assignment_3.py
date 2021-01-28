@@ -55,6 +55,10 @@ def test_assignment_3_activity_1_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 1", 5)
 
 
+def test_assignment_3_activity_1_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 1")
+
+
 def test_assignment_3_activity_1_source_code_comment_formatting():
     test.check_source_code_comment_formatting("Assignment 3", "Activity 1")
 
@@ -212,6 +216,10 @@ def test_assignment_3_activity_2_source_code_inputs():
 
 def test_assignment_3_activity_2_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 2", 5)
+
+
+def test_assignment_3_activity_2_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 2")
 
 
 def test_assignment_3_activity_2_source_code_comment_formatting():
@@ -376,6 +384,10 @@ def test_assignment_3_activity_3_source_code_inputs():
 
 def test_assignment_3_activity_3_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 3", 4)
+
+
+def test_assignment_3_activity_3_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 3")
 
 
 def test_assignment_3_activity_3_source_code_comment_formatting():
@@ -582,6 +594,10 @@ def test_assignment_3_activity_4_source_code_inputs():
 
 def test_assignment_3_activity_4_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 4", 4)
+
+
+def test_assignment_3_activity_4_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 4")
 
 
 def test_assignment_3_activity_4_source_code_comment_formatting():
@@ -905,6 +921,10 @@ def test_assignment_3_activity_5_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 5", 3)
 
 
+def test_assignment_3_activity_5_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 5")
+
+
 def test_assignment_3_activity_5_source_code_comment_formatting():
     test.check_source_code_comment_formatting("Assignment 3", "Activity 5")
 
@@ -1005,6 +1025,10 @@ def test_assignment_3_activity_6_source_code_inputs():
 
 def test_assignment_3_activity_6_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 6", 8)
+
+
+def test_assignment_3_activity_6_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 6")
 
 
 def test_assignment_3_activity_6_source_code_comment_formatting():
@@ -1108,6 +1132,10 @@ def test_assignment_3_activity_7_source_code_inputs():
 
 def test_assignment_3_activity_7_source_code_processing():
     test.check_source_code_processing("Assignment 3", "Activity 7", 3)
+
+
+def test_assignment_3_activity_7_source_code_formatting():
+    test.check_source_code_formatting("Assignment 3", "Activity 7")
 
 
 def test_assignment_3_activity_7_source_code_comment_formatting():
