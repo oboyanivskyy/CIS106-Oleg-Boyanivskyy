@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-02-01 04:23:56 PM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0wMTswNDoxNToyNSBQTTsyNjM5"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0wMTswNDoyMzo1NiBQTTsyOzI3NTE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program will calculate the age of your dog in dog years."/>
+            <declare name="total" type="Integer" array="False" size=""/>
+            <declare name="years" type="Real" array="False" size=""/>
+            <declare name="name" type="String" array="False" size=""/>
+            <output expression="&quot;What is your dog's name?&quot;" newline="True"/>
+            <input variable="name"/>
+            <output expression="&quot;How old is your dog in human years?&quot;" newline="True"/>
+            <input variable="years"/>
+            <assign variable="total" expression="years * 7"/>
+            <output expression="name &amp; &quot; is &quot; &amp; total &amp; &quot; years old in dog years&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
