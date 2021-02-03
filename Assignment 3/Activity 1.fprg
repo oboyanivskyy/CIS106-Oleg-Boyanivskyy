@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="OLEG"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2021-02-01 04:08:04 PM"/>
+        <attribute name="saved" value="2021-02-02 08:29:03 PM"/>
         <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0wMTswMzo0MDoyMSBQTTsyNjMy"/>
-        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0wMTswNDowODowNCBQTTsxOzI3NDY="/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0wMjswODoyOTowMyBQTTsyOzI3NTQ="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -17,14 +17,14 @@
             <declare name="totalweek" type="Real" array="False" size=""/>
             <declare name="rate" type="Real" array="False" size=""/>
             <declare name="hours" type="Real" array="False" size=""/>
-            <output expression="&quot;Enter Hours Worked Per Day:&quot;" newline="True"/>
+            <output expression="&quot;Enter Hours Worked Per Week:&quot;" newline="True"/>
             <input variable="hours"/>
             <output expression="&quot;Enter Rate Per Hour:&quot;" newline="True"/>
             <input variable="rate"/>
-            <assign variable="totalweek" expression="rate * hours * 5"/>
+            <assign variable="totalweek" expression="rate * hours"/>
             <assign variable="totalmonth" expression="totalweek * 4"/>
             <assign variable="totalyear" expression="totalmonth * 12"/>
-            <output expression="&quot;Weekly Pay is&quot; &amp;  totalweek &amp; &quot;Monthly Pay is&quot; &amp;  totalmonth&#13;&#10;&amp; &quot;Yearly Pay is&quot; &amp;  totalyear" newline="True"/>
+            <output expression="&quot;Weekly Pay is &quot; &amp;  totalweek &amp; &quot; Monthly Pay is &quot; &amp;  totalmonth&#13;&#10;&amp; &quot; Yearly Pay is &quot; &amp;  totalyear" newline="True"/>
         </body>
     </function>
 </flowgorithm>
