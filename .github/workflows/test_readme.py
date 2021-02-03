@@ -6,13 +6,24 @@ import re
 import test
 
 
+def test_overall_folder_structure():
+    test.check_overall_folder_structure(
+        pattern=r"(assignment( *|_)\d+)|(final( *|_)project)|"
+            r"node_modules|(\..*)")
+
+
+def test_overall_file_structure():
+    test.check_overall_file_structure(
+        pattern=r"readme.md|package-lock.json|\..*")
+
+
 def test_readme_exists():
     path = os.path.join(os.getcwd(), "README.md")
     if not os.path.isfile(path):
         assert False, "Could not find file named \"README.md\"."
 
 
-def test_readme():
+def test_readme_heading():
     path = os.getcwd()
     filename = "README.md"
     text = test.read_file(path, filename)
@@ -24,19 +35,21 @@ def test_readme():
     assert match, "README.md missing required # CIS 106 Your Name heading."
 
 
-def test_capitalize_proper_nouns():
+def test_readme_capitalize_proper_nouns():
     path = os.getcwd()
     filename = "README.md"
     text = test.read_file(path, filename)
     if not text:
         return
 
-    pattern = "flowgorithm|javascript|python"
+    pattern = "boolean|flowgorithm| i |javascript" \
+        "|microsoft|pycharm|python|thonny"
     matches = re.findall(pattern, text)
     matches = sorted(list(set(matches)))
-    assert len(matches) == 0, \
-        "README.md capitalize proper nouns. " \
-        f"Found:\n{matches}"
+    if len(matches) > 0:
+        assert False, \
+            "README.md capitalize proper nouns. " \
+            f"Found:\n{matches}"
 
 
 def test_readme_assignment_1():

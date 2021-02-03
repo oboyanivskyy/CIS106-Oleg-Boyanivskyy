@@ -520,6 +520,39 @@ def check_git_log(assignment, pattern, message):
         assert False, exception
 
 
+def check_javascript_formatting(assignment, activity):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.fprg")
+    if filename:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.js")
+    if not filename:
+        pytest.skip()
+        return
+
+    try:
+        args = "npx eslint --no-eslintrc " + \
+            os.path.join(path, filename).replace(" ", "\\ ")
+        output = subprocess.check_output(
+            args,
+            shell=True,
+            stderr=subprocess.PIPE,
+            text=True)
+    except subprocess.CalledProcessError as exception:
+        output = exception.output
+        output = output.replace(path + "/", "")
+
+        assert not output, \
+            f"{assignment} {activity} " \
+            f"JavaScript source code formatting:\n{output}\n"
+
+
 def check_javascript_output(assignment, activity, file_pattern,
     input, output_pattern, message):
 
@@ -716,8 +749,7 @@ def check_python_output_functions(assignment, activity, count):
         pytest.skip()
         return
 
-    text = read_file(path, filename)
-    functions = get_python_functions(text)
+    functions = get_python_functions(path, filename)
 
     matches = []
     for function in functions:
@@ -732,6 +764,87 @@ def check_python_output_functions(assignment, activity, count):
     assert len(matches) >= count, \
         f"{assignment} {activity} requires {count} output function(s). " \
         f"Found {len(matches)}.\n{matches}"
+
+
+def check_readme_assignment_heading(assignment):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    text = read_file(os.getcwd(), "README.md")
+    pattern = "## *" + assignment + " *\n"
+    regex = re.compile(pattern, re.IGNORECASE)
+    match = regex.search(text)
+    if not match:
+        assert False, f"README.md missing required ## {assignment} heading."
+
+
+def check_readme_assignment_content(assignment):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    text = read_file(os.getcwd(), "README.md")
+    pattern = "## " + assignment + r"\s+(.+?)(\n#)?$"
+    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
+    match = regex.search(text)
+    if not match:
+        assert False, f"README.md missing required {assignment} paragraph."
+
+    paragraph = match.group(1)
+    words = paragraph.split()
+    if len(words) < 100:
+        assert False, \
+            f"README.md {assignment} paragraph lacks detail. " \
+            "Expand on your ideas. Expecting 100+ words, found " \
+            f"{len(words)}."
+
+
+def check_required_files(assignment, file_extension, count):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    description = get_file_type(file_extension)
+    pattern = r"activity[ _]?#?\d\." + file_extension
+    files = get_files(path, pattern)
+    assert len(files) >= count, \
+        f"{assignment} requires {count} {description} file(s). " \
+        f"Found {len(files)}.\n{files}"
+
+
+def check_source_code_comments(assignment, activity, count,
+    file_extension="(cs|java|js|lua|py)"):
+
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\." + file_extension)
+    if not filename:
+        pytest.skip()
+        return
+
+    text = read_file(path, filename)
+
+    if file_extension == "fprg":
+        pattern = "<comment text="
+    elif file_extension == "txt":
+        pattern = "... "
+    elif ".lua" in filename:
+        pattern = "^--"
+    elif ".py" in filename:
+        pattern = "^#"
+    else:
+        pattern = r"^\s*\/\/"
+
+    matches = re.findall(pattern, text, re.MULTILINE)
+    assert len(matches) >= count, \
+        f"{assignment} {filename} is missing comments."
 
 
 def check_source_code_comment_formatting(assignment, activity):
@@ -789,13 +902,91 @@ def check_source_code_formatting(assignment, activity):
     elif ".java" in filename:
         assert False, "Not implemented"
     elif ".js" in filename:
-        assert False, "Not implemented"
+        check_javascript_formatting(assignment, activity)
     elif ".lua" in filename:
         assert False, "Not implemented"
     elif ".py" in filename:
         check_python_formatting(assignment, activity)
     else:
         assert False, f"Unexpected file type for {filename}"
+
+
+def check_source_code_functions(assignment, activity, 
+    input_count, processing_count, output_count):
+    path = get_path(assignment)
+    if not path:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.fprg")
+    if filename:
+        pytest.skip()
+        return
+
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
+    if not filename:
+        pytest.skip()
+        return
+
+    if ".cs" in filename:
+        assert False, "Not implemented"
+    elif ".java" in filename:
+        assert False, "Not implemented"
+    elif ".js" in filename:
+        assert False, "Not implemented"
+    elif ".lua" in filename:
+        assert False, "Not implemented"
+    elif ".py" in filename:
+        functions = get_python_functions(path, filename)
+    else:
+        assert False, f"Unexpected file type for {filename}"
+
+    result = f"{assignment} {filename}"
+
+    input_functions = []
+    processing_functions = []
+    output_functions = []
+    main_functions = []
+    for function in functions:
+        if function["name"] == "main":
+            main_functions.append(function["name"])
+        elif function["type"] == "input":
+            input_functions.append(function["name"])
+            if not function["returns"]:
+                result += f"\n\nInput function {function['name']} " \
+                "must return a value."
+        elif function["type"] == "processing":
+            processing_functions.append(function["name"])
+            if not function["parameters"]:
+                result += f"\n\nProcessing function {function['name']} " \
+                    "must accept one or more parameters."
+            if not function["returns"]:
+                result += f"\n\nProcessing function {function['name']} " \
+                    "must return a value."
+        elif function["type"] == "output":
+            output_functions.append(function["name"])
+            if not function["parameters"]:
+                result += f"\n\nOutput function {function['name']} " \
+                    "must accept one or more parameters."
+    
+    if len(main_functions) < 1:
+        result += f"\n\nExpected 1 main function. " \
+            f"Found:\n{main_functions}"
+
+    if len(input_functions) < input_count:
+        result += f"\n\nExpected {input_count} input functions. " \
+            f"Found:\n{input_functions}"
+
+    if len(processing_functions) < processing_count:
+        result += f"\n\nExpected {processing_count} processing functions. " \
+            f"Found:\n{processing_functions}"
+
+    if len(output_functions) < output_count:
+        result += f"\n\nExpected {output_count} output functions. " \
+            f"Found:\n{output_functions}"
+
+    if "\n\n" in result:
+        assert False, result
 
 
 def check_source_code_identifier_formatting(assignment, activity):
@@ -974,87 +1165,6 @@ def check_source_code_processing(assignment, activity, count):
         "Use intermediate variables for processing."
 
 
-def check_readme_assignment_heading(assignment):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    text = read_file(os.getcwd(), "README.md")
-    pattern = "## *" + assignment + " *\n"
-    regex = re.compile(pattern, re.IGNORECASE)
-    match = regex.search(text)
-    if not match:
-        assert False, f"README.md missing required ## {assignment} heading."
-
-
-def check_readme_assignment_content(assignment):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    text = read_file(os.getcwd(), "README.md")
-    pattern = "## " + assignment + r"\s+(.+?)(\n#)?$"
-    regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
-    match = regex.search(text)
-    if not match:
-        assert False, f"README.md missing required {assignment} paragraph."
-
-    paragraph = match.group(1)
-    words = paragraph.split()
-    if len(words) < 100:
-        assert False, \
-            f"README.md {assignment} paragraph lacks detail. " \
-            "Expand on your ideas. Expecting 100+ words, found " \
-            f"{len(words)}."
-
-
-def check_required_files(assignment, file_extension, count):
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    description = get_file_type(file_extension)
-    pattern = r"activity( *|_)#?\d\." + file_extension
-    files = get_files(path, pattern)
-    assert len(files) >= count, \
-        f"{assignment} requires {count} {description} file(s). " \
-        f"Found {len(files)}.\n{files}"
-
-
-def check_source_code_comments(assignment, activity, count,
-    file_extension="(cs|java|js|lua|py)"):
-
-    path = get_path(assignment)
-    if not path:
-        pytest.skip()
-        return
-
-    filename = get_filename(path, activity + r"\." + file_extension)
-    if not filename:
-        pytest.skip()
-        return
-
-    text = read_file(path, filename)
-
-    if file_extension == "fprg":
-        pattern = "<comment text="
-    elif file_extension == "txt":
-        pattern = "... "
-    elif ".lua" in filename:
-        pattern = "^--"
-    elif ".py" in filename:
-        pattern = "^#"
-    else:
-        pattern = r"^\s*\/\/"
-
-    matches = re.findall(pattern, text, re.MULTILINE)
-    assert len(matches) >= count, \
-        f"{assignment} {filename} is missing comments."
-
-
 def check_source_code_output(assignment, activity, file_pattern,
     input, output_pattern, message):
 
@@ -1099,6 +1209,23 @@ def check_source_code_output(assignment, activity, file_pattern,
         f"{assignment} {activity} {message}\n" \
         f"Input:\n{input}\n" \
         f"Output:\n{output}"
+
+
+def compile_java_program(path, filename):
+    args = "javac " + \
+        os.path.join(path, filename).replace(" ", "\\ ")
+    try:
+        output = subprocess.check_output(
+            args,
+            shell=True,
+            stderr=subprocess.PIPE,
+            text=True)
+        output_cache(path, filename, input, output)
+        return
+    except subprocess.CalledProcessError as exception:
+        output_cache(path, filename, input,
+            f"{exception.output}\n"
+            f"{exception.stderr}")
 
 
 def get_csharp_functions(text):
@@ -1204,7 +1331,33 @@ def get_filename(path, pattern):
 
 
 def get_java_output(assignment, activity, input):
-    assert False, "Not implemented"
+    path = get_path(assignment)
+    if not path:
+        return None
+
+    filename = get_filename(path, activity + r"\.java")
+    if not filename:
+        return None
+
+    output = output_cache(path, filename, input)
+    if output is None:
+        compile_java_program(path, filename)
+        args = "java -cp " + path + " " + \
+            filename.replace(".java", "").replace(" ", "\\ ")
+        try:
+            output = subprocess.check_output(
+                args,
+                input=input,
+                shell=True,
+                stderr=subprocess.PIPE,
+                text=True)
+            output_cache(path, filename, input, output)
+        except subprocess.CalledProcessError as exception:
+            output_cache(path, filename, input,
+                f"{exception.output}\n"
+                f"{exception.stderr}")
+
+    return output
 
 
 def get_javascript_output(assignment, activity, input):
@@ -1278,7 +1431,9 @@ def get_path(pattern):
                     return entry.path
 
 
-def get_python_functions(text):
+def get_python_functions(path, filename):
+    text = read_file(path, filename)
+
     pattern = r"^def (.+?)\((.*?)\).*?:"
     matches = []
     for match in re.finditer(pattern, text, re.MULTILINE):
@@ -1297,6 +1452,25 @@ def get_python_functions(text):
         else:
             function["text"] = text[match.start(0):].strip()
         functions.append(function)
+
+    pattern = r"return (\w+)"
+    for index in range(len(functions)):
+        function = functions[index]
+        match = re.search(pattern, function["text"])
+        if match:
+            function["returns"] = match.group(1)
+        else:
+            function["returns"] = None
+
+        if "input(" in function["text"]:
+            function["type"] = "input"            
+            continue
+
+        if "print(" in function["text"]:
+            function["type"] = "output"
+            continue
+
+        function["type"] = "processing"
 
     return functions
 
@@ -1363,5 +1537,4 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    result = check_source_code_formatting("Assignment 5", "Activity 2")
-    print(result)
+    check_required_files("Assignment 5", "fprg", 1)
