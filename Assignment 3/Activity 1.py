@@ -5,5 +5,5 @@ print("Enter Rate Per Hour:")
 rate = float(input())
 totalweek = rate * hours
 totalmonth = totalweek * 4
-totalyear = totalmonth * 12
+totalyear = totalweek * 52
 print("Weekly Pay is " + str(totalweek) + " Monthly Pay is " + str(totalmonth) + " Yearly Pay is " + str(totalyear))
