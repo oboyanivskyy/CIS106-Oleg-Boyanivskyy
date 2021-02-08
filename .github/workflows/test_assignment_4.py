@@ -60,7 +60,7 @@ def test_assignment_4_activity_1_input_labels():
         "Activity 1",
         "",
         "10\n15\n",
-        "hours.*?\n?.*?rate",
+        "hours.*?\n?.*?(rate|per hour)",
         "Input label(s) missing or incorrect. "
             "Expecting hours and rate.")
 
@@ -773,16 +773,16 @@ def test_assignment_4_activity_5_area_output():
         "Assignment 4",
         "Activity 5",
         "",
-        "10\n10\n",
-        r"11\.11",
+        "12\n10\n",
+        r"13\.33",
         "area calculation output is incorrect.")
 
     test.check_source_code_output(
         "Assignment 4",
         "Activity 5",
         "",
-        "10.5\n10.5\n",
-        "12.25",
+        "12.5\n10.5\n",
+        "14.58",
         "area calculation output is incorrect.")
 
     test.check_source_code_output(
@@ -792,7 +792,8 @@ def test_assignment_4_activity_5_area_output():
         "10\n10\n",
         r"yards.+?11\.11|11\.11.+?yards",
         "area output label is missing or incorrect. "
-            "Expecting yards.")
+            "Expecting yards. "
+            "Include output label on same line as result.")
 
 
 def test_assignment_4_activity_6_source_code_comments():
@@ -917,7 +918,7 @@ def test_assignment_4_activity_7_input_labels():
         "Activity 7",
         "",
         "Rover\n2\n",
-        "name.*?\n?.*?age|name.*?\n?.*?old",
+        "name.*?\n?.*?(age|years|old)",
         "input label(s) missing or incorrect. "
             "Expecting name and age.")
 

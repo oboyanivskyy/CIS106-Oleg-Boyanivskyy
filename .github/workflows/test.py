@@ -174,7 +174,8 @@ def check_file_does_not_contain(assignment, activity, file_extension,
         f"Found: {matches}"
 
 
-def check_flowgorithm_functions(assignment, activity, count):
+def check_flowgorithm_functions(assignment, activity, 
+    input_count, processing_count, output_count):
     path = get_path(assignment)
     if not path:
         pytest.skip()
@@ -185,16 +186,54 @@ def check_flowgorithm_functions(assignment, activity, count):
         pytest.skip()
         return
 
-    text = read_file(path, filename).strip()
+    functions = get_flowgorithm_functions(path, filename)
 
-    assert text[0:5] == "<?xml", \
-        f"{assignment} {filename} is not a valid Flowgorithm file."
+    result = f"{assignment} {filename}"
 
-    pattern = "<function name=(.+?) .+?>"
-    matches = re.findall(pattern, text, re.DOTALL)
-    assert len(matches) >= count, \
-        f"{assignment} {activity} requires {count} function(s). " \
-        f"Found {len(matches)}.\n{matches}"
+    main_functions = []
+    input_functions = []
+    processing_functions = []
+    output_functions = []
+    for function in functions:
+        if function["name"] == "Main":
+            main_functions.append(function["name"])
+        elif function["type"] == "input":
+            input_functions.append(function["name"])
+            if not function["returns"]:
+                result += f"\n\nInput function {function['name']} " \
+                "must return a value."
+        elif function["type"] == "processing":
+            processing_functions.append(function["name"])
+            if not function["parameters"]:
+                result += f"\n\nProcessing function {function['name']} " \
+                    "must accept one or more parameters."
+            if not function["returns"]:
+                result += f"\n\nProcessing function {function['name']} " \
+                    "must return a value."
+        elif function["type"] == "output":
+            output_functions.append(function["name"])
+            if not function["parameters"]:
+                result += f"\n\nOutput function {function['name']} " \
+                    "must accept one or more parameters."
+    
+    if len(main_functions) < 1:
+        result += f"\n\nExpected 1 main function. " \
+            f"Found:\n{main_functions}"
+
+    if len(input_functions) < input_count:
+        result += f"\n\nExpected {input_count} input functions. " \
+            f"Found:\n{input_functions}"
+
+    if len(processing_functions) < processing_count:
+        result += f"\n\nExpected {processing_count} processing functions. " \
+            f"Found:\n{processing_functions}"
+
+    if len(output_functions) < output_count:
+        result += f"\n\nExpected {output_count} output functions. " \
+            f"Found:\n{output_functions}"
+
+    if "\n\n" in result:
+        assert False, result
 
 
 def check_flowgorithm_has_matching_source_code_file(assignment, activity):
@@ -1130,7 +1169,9 @@ def check_source_code_operator_formatting(assignment, activity):
 
     text = read_file(path, filename)
 
-    if ".py" in filename:
+    if ".lua" in filename:
+        text = re.sub(r"\-\-.*?\n", "\n", text)
+    elif ".py" in filename:
         text = re.sub("#.*?\n", "\n", text)
         text = re.sub(r"\*\*", "", text)
     else:
@@ -1157,7 +1198,7 @@ def check_source_code_processing(assignment, activity, count):
 
     text = read_file(path, filename)
 
-    pattern = r"\w+ *= "
+    pattern = r"\w+ *="
     matches = re.findall(pattern, text)
     assert len(matches) >= count, \
         f"{assignment} {activity} requires {count} assignment statement(s). " \
@@ -1318,8 +1359,7 @@ def get_files(path, pattern):
 
 
 def get_filename(path, pattern):
-    pattern = pattern.replace(" ", "( *|_)")
-    pattern = pattern.replace(r"\d", r"#?\d")
+    pattern = pattern.replace(" ", "[ _]?#?")
     pattern = "^" + pattern + "$"
     regex = re.compile(pattern, re.IGNORECASE)
     with os.scandir(path) as iterator:
@@ -1328,6 +1368,41 @@ def get_filename(path, pattern):
                 match = regex.match(entry.name)
                 if match:
                     return entry.name
+
+
+def get_flowgorithm_functions(path, filename):
+    text = read_file(path, filename)
+
+    pattern = r"<function name=\"(.+?)\" " \
+        r"type=\"(.+?)\" " \
+        r"variable=\"(.*?)\">" \
+        r".+?<\/function>"
+    matches = []
+    for match in re.finditer(pattern, text, re.DOTALL):
+        matches.append(match)
+
+    functions = []
+    for match in matches:
+        function = {}
+        function["name"] = match.group(1)
+        function["text"] = match.group(0)
+        function["returns"] = match.group(3)
+        pattern = r"<parameter name=\"(.+?)\""
+        parameters = re.findall(pattern, function["text"])
+        function["parameters"] = ", ".join(parameters)
+
+        if function["name"] == "Main":
+            function["type"] = "main"
+        elif "<input variable" in function["text"]:
+            function["type"] = "input"            
+        elif "<output expression" in function["text"]:
+            function["type"] = "output"
+        else:
+            function["type"] = "processing"
+
+        functions.append(function)
+    
+    return functions
 
 
 def get_java_output(assignment, activity, input):
@@ -1537,4 +1612,4 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    check_required_files("Assignment 5", "fprg", 1)
+    pass

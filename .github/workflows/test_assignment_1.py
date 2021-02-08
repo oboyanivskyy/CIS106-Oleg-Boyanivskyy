@@ -3,21 +3,10 @@
 import test
 
 
-def test_overall_folder_structure():
-    test.check_overall_folder_structure(
-        pattern=r"(assignment( *|_)\d+)|(final( *|_)project)|"
-            r"node_modules|(\..*)")
-
-
-def test_overall_file_structure():
-    test.check_overall_file_structure(
-        pattern=r"readme.md|\..*")
-
-
 def test_assignment_1_folder_structure():
     test.check_assignment_folder_structure(
         assignment="Assignment 1",
-        pattern=r"activity( *|_)1\.txt",
+        pattern=r"activity[ _]?1\.txt|package-lock.json",
         required=True)
 
 

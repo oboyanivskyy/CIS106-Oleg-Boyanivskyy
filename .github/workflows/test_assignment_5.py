@@ -22,25 +22,8 @@ def test_assignment_5_activity_1_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 1", 1, "fprg")
 
 
-def test_assignment_5_activity_1_flowgorithm_main_function():
-    test.check_flowgorithm_main_function("Assignment 5", "Activity 1")
-
-
 def test_assignment_5_activity_1_flowgorithm_functions():
-    test.check_flowgorithm_functions("Assignment 5", "Activity 1", 7)
-
-
-def test_assignment_5_activity_1_flowgorithm_input_functions():
-    test.check_flowgorithm_input_functions("Assignment 5", "Activity 1", 2)
-
-
-def test_assignment_5_activity_1_flowgorithm_processing_functions():
-    test.check_flowgorithm_processing_functions(
-        "Assignment 5", "Activity 1", 3)
-
-
-def test_assignment_5_activity_1_flowgorithm_output_functions():
-    test.check_flowgorithm_output_functions("Assignment 5", "Activity 1", 1)
+    test.check_flowgorithm_functions("Assignment 5", "Activity 1", 2, 3, 1)
 
 
 def test_assignment_5_activity_1_flowgorithm_has_matching_source_code_file():
@@ -86,7 +69,7 @@ def test_assignment_5_activity_1_input_labels():
         "Activity 1",
         "",
         "10\n15\n",
-        "hours.*?\n?.*?rate",
+        "hours.*?\n?.*?(rate|per hour)",
         "Input label(s) missing or incorrect. "
             "Expecting hours and rate.")
 
@@ -176,20 +159,8 @@ def test_assignment_5_activity_2_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 2", 1, "fprg")
 
 
-def test_assignment_5_activity_2_flowgorithm_variables():
-    test.check_flowgorithm_variables("Assignment 5", "Activity 2", 5)
-
-
-def test_assignment_5_activity_2_flowgorithm_inputs():
-    test.check_flowgorithm_inputs("Assignment 5", "Activity 2", 1)
-
-
-def test_assignment_5_activity_2_flowgorithm_processing():
-    test.check_flowgorithm_processing("Assignment 5", "Activity 2", 4)
-
-
-def test_assignment_5_activity_2_flowgorithm_output():
-    test.check_flowgorithm_output("Assignment 5", "Activity 2", 1)
+def test_assignment_5_activity_2_flowgorithm_functions():
+    test.check_flowgorithm_functions("Assignment 5", "Activity 2", 1, 4, 1)
 
 
 def test_assignment_5_activity_2_flowgorithm_has_matching_source_code_file():
@@ -328,20 +299,8 @@ def test_assignment_5_activity_3_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 3", 1, "fprg")
 
 
-def test_assignment_5_activity_3_flowgorithm_variables():
-    test.check_flowgorithm_variables("Assignment 5", "Activity 3", 4)
-
-
-def test_assignment_5_activity_3_flowgorithm_inputs():
-    test.check_flowgorithm_inputs("Assignment 5", "Activity 3", 1)
-
-
-def test_assignment_5_activity_3_flowgorithm_processing():
-    test.check_flowgorithm_processing("Assignment 5", "Activity 3", 3)
-
-
-def test_assignment_5_activity_3_flowgorithm_output():
-    test.check_flowgorithm_output("Assignment 5", "Activity 3", 1)
+def test_assignment_5_activity_3_flowgorithm_functions():
+    test.check_flowgorithm_functions("Assignment 5", "Activity 3", 1, 3, 1)
 
 
 def test_assignment_5_activity_3_flowgorithm_has_matching_source_code_file():
@@ -518,20 +477,8 @@ def test_assignment_5_activity_4_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 4", 1, "fprg")
 
 
-def test_assignment_5_activity_4_flowgorithm_variables():
-    test.check_flowgorithm_variables("Assignment 5", "Activity 4", 3)
-
-
-def test_assignment_5_activity_4_flowgorithm_inputs():
-    test.check_flowgorithm_inputs("Assignment 5", "Activity 4", 2)
-
-
-def test_assignment_5_activity_4_flowgorithm_processing():
-    test.check_flowgorithm_processing("Assignment 5", "Activity 4", 2)
-
-
-def test_assignment_5_activity_4_flowgorithm_output():
-    test.check_flowgorithm_output("Assignment 5", "Activity 4", 1)
+def test_assignment_5_activity_4_flowgorithm_functions():
+    test.check_flowgorithm_functions("Assignment 5", "Activity 4", 2, 2, 1)
 
 
 def test_assignment_5_activity_4_flowgorithm_has_matching_source_code_file():
@@ -596,7 +543,7 @@ def test_assignment_5_activity_4_triangle_area_output():
     test.check_source_code_output(
         "Assignment 5",
         "Activity 4",
-        "rectangle",
+        "triangle",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
         "0.5",
         "triangle area calculation output is incorrect. "
@@ -819,20 +766,8 @@ def test_assignment_5_activity_5_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 5", 1, "fprg")
 
 
-def test_assignment_5_activity_5_flowgorithm_variables():
-    test.check_flowgorithm_variables("Assignment 5", "Activity 5", 3)
-
-
-def test_assignment_5_activity_5_flowgorithm_inputs():
-    test.check_flowgorithm_inputs("Assignment 5", "Activity 5", 2)
-
-
-def test_assignment_5_activity_5_flowgorithm_processing():
-    test.check_flowgorithm_processing("Assignment 5", "Activity 5", 1)
-
-
-def test_assignment_5_activity_5_flowgorithm_output():
-    test.check_flowgorithm_output("Assignment 5", "Activity 5", 1)
+def test_assignment_5_activity_5_flowgorithm_functions():
+    test.check_flowgorithm_functions("Assignment 5", "Activity 5", 2, 1, 1)
 
 
 def test_assignment_5_activity_5_flowgorithm_has_matching_source_code_file():
@@ -888,16 +823,16 @@ def test_assignment_5_activity_5_area_output():
         "Assignment 5",
         "Activity 5",
         "",
-        "10\n10\n",
-        r"11\.11",
+        "12\n10\n",
+        r"13\.33",
         "area calculation output is incorrect.")
 
     test.check_source_code_output(
         "Assignment 5",
         "Activity 5",
         "",
-        "10.5\n10.5\n",
-        "12.25",
+        "12.5\n10.5\n",
+        "14.58",
         "area calculation output is incorrect.")
 
     test.check_source_code_output(
@@ -915,20 +850,8 @@ def test_assignment_5_activity_6_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 6", 1, "fprg")
 
 
-def test_assignment_5_activity_6_flowgorithm_variables():
-    test.check_flowgorithm_variables("Assignment 5", "Activity 6", 7)
-
-
-def test_assignment_5_activity_6_flowgorithm_inputs():
-    test.check_flowgorithm_inputs("Assignment 5", "Activity 6", 5)
-
-
-def test_assignment_5_activity_6_flowgorithm_processing():
-    test.check_flowgorithm_processing("Assignment 5", "Activity 6", 3)
-
-
-def test_assignment_5_activity_6_flowgorithm_output():
-    test.check_flowgorithm_output("Assignment 5", "Activity 6", 1)
+def test_assignment_5_activity_6_flowgorithm_functions():
+    test.check_flowgorithm_functions("Assignment 5", "Activity 6", 5, 3, 1)
 
 
 def test_assignment_5_activity_6_flowgorithm_has_matching_source_code_file():
@@ -1010,20 +933,8 @@ def test_assignment_5_activity_7_flowgorithm_comments():
     test.check_source_code_comments("Assignment 5", "Activity 7", 1, "fprg")
 
 
-def test_assignment_5_activity_7_flowgorithm_variables():
-    test.check_flowgorithm_variables("Assignment 5", "Activity 7", 3)
-
-
-def test_assignment_5_activity_7_flowgorithm_inputs():
-    test.check_flowgorithm_inputs("Assignment 5", "Activity 7", 2)
-
-
-def test_assignment_5_activity_7_flowgorithm_processing():
-    test.check_flowgorithm_processing("Assignment 5", "Activity 7", 1)
-
-
-def test_assignment_5_activity_7_flowgorithm_output():
-    test.check_flowgorithm_output("Assignment 5", "Activity 7", 1)
+def test_assignment_5_activity_7_flowgorithm_functions():
+    test.check_flowgorithm_functions("Assignment 5", "Activity 7", 2, 1, 1)
 
 
 def test_assignment_5_activity_7_flowgorithm_has_matching_source_code_file():
@@ -1069,7 +980,7 @@ def test_assignment_5_activity_7_input_labels():
         "Activity 7",
         "",
         "Rover\n2\n",
-        "name.*?\n?.*?age|name.*?\n?.*?old",
+        "name.*?\n?.*?(age|years|old)",
         "input label(s) missing or incorrect. "
             "Expecting name and age.")
 
