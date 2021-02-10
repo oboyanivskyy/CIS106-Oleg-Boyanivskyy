@@ -12,4 +12,7 @@ hours = days * 24
 
 seconds = hours * 3600
 
-print("You are " + str(months) + " months " + str(days) + " days " + str(hours) + " hours " + str(seconds) + " seconds old ")
+print("You are " + str(months) + " months ")
+print(str(days) + " days ")
+print(str(hours) + " hours ")
+print(str(seconds) + " seconds old ")
