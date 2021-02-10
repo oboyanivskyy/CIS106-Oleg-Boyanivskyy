@@ -10,4 +10,10 @@ feet = miles * 5280
 
 inches = miles * 63360
 
-print(" The total distance is " + str(miles) + " miles, " + str(yards) + " yards, " + str(feet) + " feet, and " + str(inches) + " inches. ")
+print(" The total distance is " + str(miles) + " miles, ")
+
+print(+ str(yards) + " yards, ")
+
+print(+ str(feet) + " feet, and ")
+
+print(+ str(inches) + " inches. ")
