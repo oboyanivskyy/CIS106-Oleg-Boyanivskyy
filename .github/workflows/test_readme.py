@@ -35,6 +35,22 @@ def test_readme_heading():
     assert match, "README.md missing required # CIS 106 Your Name heading."
 
 
+def test_readme_check_spelling():
+    path = os.getcwd()
+    filename = "README.md"
+    text = test.read_file(path, filename)
+    if not text:
+        return
+
+    pattern = "flowgarithm"
+    matches = re.findall(pattern, text, re.IGNORECASE)
+    matches = sorted(list(set(matches)))
+    if len(matches) > 0:
+        assert False, \
+            "README.md check spelling. " \
+            f"Found:\n{matches}"
+
+
 def test_readme_capitalize_proper_nouns():
     path = os.getcwd()
     filename = "README.md"

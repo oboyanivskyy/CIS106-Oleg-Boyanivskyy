@@ -60,7 +60,7 @@ def test_assignment_4_activity_1_input_labels():
         "Activity 1",
         "",
         "10\n15\n",
-        "hours.*?\n?.*?(rate|per hour)",
+        "hours.*?\n?.*?(rate|per hour|hourly)",
         "Input label(s) missing or incorrect. "
             "Expecting hours and rate.")
 
@@ -105,7 +105,7 @@ def test_assignment_4_activity_1_monthly_output():
         "Activity 1",
         "",
         "10.5\n15.5\n",
-        "651.0|705.25",
+        "651|705.25",
         "monthly calculation output is incorrect.")
 
     test.check_source_code_output(
@@ -131,7 +131,7 @@ def test_assignment_4_activity_1_yearly_output():
         "Activity 1",
         "",
         "10.5\n15.5\n",
-        "8463.0",
+        "8463",
         "yearly calculation output is incorrect.")
 
     test.check_source_code_output(
@@ -763,7 +763,7 @@ def test_assignment_4_activity_5_input_labels():
         "Activity 5",
         "",
         "10\n10\n",
-        "length.*?\n?.*?width",
+        "length.*?\n?.*?width|long.*?\n?.*?wide",
         "input label(s) missing or incorrect. "
             "Expecting length and width.")
 
