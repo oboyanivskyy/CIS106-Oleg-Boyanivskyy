@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-02-15 11:37:44 PM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTsxMTozMjoxOSBQTTsyNjQ0"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTsxMTozNzo0NCBQTTsxOzI3NTU="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="name" type="String" array="False" size=""/>
+            <declare name="years" type="Integer" array="False" size=""/>
+            <assign variable="name" expression="GetName()"/>
+            <assign variable="years" expression="GetYears()"/>
+            <output expression="name &amp; &quot; is &quot; &amp; years &amp; &quot; years old in dog years.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="GetName" type="String" variable="name">
+        <parameters/>
+        <body>
+            <declare name="name" type="String" array="False" size=""/>
+            <output expression="&quot;What is the name of your dog?&quot;" newline="True"/>
+            <input variable="name"/>
+        </body>
+    </function>
+    <function name="GetYears" type="Integer" variable="years">
+        <parameters/>
+        <body>
+            <declare name="years" type="Integer" array="False" size=""/>
+            <declare name="hyears" type="Integer" array="False" size=""/>
+            <output expression="&quot;How old is your dog in human years?&quot;" newline="True"/>
+            <input variable="hyears"/>
+            <assign variable="years" expression="hyears * 7"/>
+        </body>
+    </function>
+</flowgorithm>
