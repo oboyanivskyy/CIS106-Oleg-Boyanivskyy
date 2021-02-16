@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-02-15 11:17:16 PM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTswOToyNTozMCBQTTsyNjQ2"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTsxMToxNzoxNiBQTTsyOzI3NTM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program will calculate area for a triangle, rectangle, and parallelogram"/>
+            <declare name="parallelogram" type="Integer" array="False" size=""/>
+            <declare name="triangle" type="Integer" array="False" size=""/>
+            <declare name="rectangle" type="Integer" array="False" size=""/>
+            <assign variable="triangle" expression="GetTriangle()"/>
+            <assign variable="rectangle" expression="GetRectangle()"/>
+            <assign variable="parallelogram" expression="GetParallelogram()"/>
+            <output expression="&quot;Area of triangle is &quot; &amp; triangle &amp; &quot;, Area of rectangle is &quot; &amp; rectangle &amp; &quot;, and Area of the parallelogram is &quot; &amp; parallelogram" newline="True"/>
+        </body>
+    </function>
+    <function name="GetTriangle" type="Integer" variable="triangle">
+        <parameters/>
+        <body>
+            <declare name="triangle" type="Integer" array="False" size=""/>
+            <declare name="base" type="Integer" array="False" size=""/>
+            <declare name="height" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter the base of the triangle&quot;" newline="True"/>
+            <input variable="base"/>
+            <output expression="&quot;Enter height of the triangle&quot;" newline="True"/>
+            <input variable="height"/>
+            <assign variable="triangle" expression="0.5 * base * height"/>
+        </body>
+    </function>
+    <function name="GetRectangle" type="Integer" variable="rectangle">
+        <parameters/>
+        <body>
+            <declare name="rectangle" type="Integer" array="False" size=""/>
+            <declare name="width" type="Integer" array="False" size=""/>
+            <declare name="height" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter the height of the rectangle&quot;" newline="True"/>
+            <input variable="height"/>
+            <output expression="&quot;Enter the width of the rectangle.&quot;" newline="True"/>
+            <input variable="width"/>
+            <assign variable="rectangle" expression="width * height"/>
+        </body>
+    </function>
+    <function name="GetParallelogram" type="Integer" variable="parallelogram">
+        <parameters/>
+        <body>
+            <declare name="parallelogram" type="Integer" array="False" size=""/>
+            <declare name="base" type="Integer" array="False" size=""/>
+            <declare name="height" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter the base of the parallelogram&quot;" newline="True"/>
+            <input variable="base"/>
+            <output expression="&quot;Enter the vertical height of the parallelogram&quot;" newline="True"/>
+            <input variable="height"/>
+            <assign variable="parallelogram" expression="base * height"/>
+        </body>
+    </function>
+</flowgorithm>
