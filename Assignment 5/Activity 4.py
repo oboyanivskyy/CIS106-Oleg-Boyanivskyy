@@ -1,3 +1,5 @@
+# This program will calculate area for a triangle, rectangle, and parallelogram.
+
 def getTriangle():
     print("Enter the base of the triangle")
     base = int(input())
@@ -26,7 +28,6 @@ def getParallelogram():
     return parallelogram
 
 # Main
-# This program will calculate area for a triangle, rectangle, and parallelogram
 triangle = getTriangle()
 rectangle = getRectangle()
 parallelogram = getParallelogram()
