@@ -18,3 +18,6 @@ Rereading the chapter again really helped me clarify and learn more about the di
 
 ## Assignment 5
 
+After reading Chapter 5, I must say that I have been blown away as to how complex a program can get with functions and calling them. I have learned how to create a separate function from the "main" one, and define to do a simple task. After watching some of the YouTube videos on Wikiuniversity, it makes sense to me why this exists and why it is helpful. The functions help organize my code and create an easier workflow to saving code for future use. I also really enjoyed learning about calling a funciton and how it is used to go back to the "main" function. I had some struggles at first, as I kept forgetting to define my variables and thus, it generated errors. However, using Flowgorithim has helped greatly with seeing what I'm missing and being able to play around with it to make it work. Overall, this chapter introduced a lot of new concepts, and I have been very excited with playing around with them.
+
+## Assignment 6
