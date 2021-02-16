@@ -1,4 +1,4 @@
-# This program will calculate area for a triangle, rectangle, and parallelogram.
+# This program will calculate area for a triangle, rectangle, and parallelogram
 
 def getTriangle():
     print("Enter the base of the triangle")
@@ -18,17 +18,21 @@ def getRectangle():
     
     return rectangle
 
-def getParallelogram():
+def getParallel():
     print("Enter the base of the parallelogram")
     base = int(input())
     print("Enter the vertical height of the parallelogram")
     height = int(input())
-    parallelogram = base * height
+    parallel = base * height
     
-    return parallelogram
+    return parallel
 
 # Main
+
 triangle = getTriangle()
 rectangle = getRectangle()
-parallelogram = getParallelogram()
-print("Area of triangle is " + str(triangle) + ", Area of rectangle is " + str(rectangle) + ", and Area of the parallelogram is " + str(parallelogram))
+parallel = getParallel()
+
+print("Area of triangle = " + str(triangle))
+print("Area of rectangle = " + str(rectangle))
+print("Area of parallelogram = " + str(parallel))
