@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="OLEG"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2021-02-16 09:28:08 PM"/>
+        <attribute name="saved" value="2021-02-17 10:05:14 AM"/>
         <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTswOToyNTozMCBQTTsyNjQ2"/>
-        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNjswOToyODowOCBQTTs5OzI3NzE="/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNzsxMDowNToxNCBBTTsxMTsyNzgy"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -14,30 +14,36 @@
             <comment text="This program will calculate area for a triangle and rectangle."/>
             <declare name="triangle" type="Integer" array="False" size=""/>
             <declare name="rectangle" type="Integer" array="False" size=""/>
-            <assign variable="triangle" expression="CalculateTriangleArea()"/>
-            <assign variable="rectangle" expression="CalculateRectArea()"/>
+            <declare name="base" type="Integer" array="False" size=""/>
+            <declare name="height" type="Integer" array="False" size=""/>
+            <declare name="rectheight" type="Integer" array="False" size=""/>
+            <declare name="width" type="Integer" array="False" size=""/>
+            <assign variable="base" expression="getBase()"/>
+            <assign variable="height" expression="getHeight()"/>
+            <assign variable="triangle" expression="CalculateTriangleArea(base,height)"/>
+            <assign variable="width" expression="getWidth()"/>
+            <assign variable="rectheight" expression="getRectHeight()"/>
+            <assign variable="rectangle" expression="CalculateRectArea(width,rectheight)"/>
             <call expression="displayResults(triangle,rectangle)"/>
         </body>
     </function>
     <function name="calculateRectArea" type="Integer" variable="rectangle">
-        <parameters/>
+        <parameters>
+            <parameter name="rectheight" type="Integer" array="False"/>
+            <parameter name="width" type="Integer" array="False"/>
+        </parameters>
         <body>
-            <declare name="width" type="Integer" array="False" size=""/>
             <declare name="rectangle" type="Integer" array="False" size=""/>
-            <declare name="height" type="Integer" array="False" size=""/>
-            <assign variable="width" expression="getWidth()"/>
-            <assign variable="height" expression="getRectHeight()"/>
-            <assign variable="rectangle" expression="height * width"/>
+            <assign variable="rectangle" expression="rectheight * width"/>
         </body>
     </function>
     <function name="calculateTriangleArea" type="Integer" variable="triangle">
-        <parameters/>
+        <parameters>
+            <parameter name="base" type="Integer" array="False"/>
+            <parameter name="height" type="Integer" array="False"/>
+        </parameters>
         <body>
-            <declare name="base" type="Integer" array="False" size=""/>
             <declare name="triangle" type="Integer" array="False" size=""/>
-            <declare name="height" type="Integer" array="False" size=""/>
-            <assign variable="base" expression="getBase()"/>
-            <assign variable="height" expression="getHeight()"/>
             <assign variable="triangle" expression="base * height * (1/2)"/>
         </body>
     </function>
@@ -67,12 +73,12 @@
             <input variable="height"/>
         </body>
     </function>
-    <function name="getRectHeight" type="Integer" variable="height">
+    <function name="getRectHeight" type="Integer" variable="rectheight">
         <parameters/>
         <body>
-            <declare name="height" type="Integer" array="False" size=""/>
+            <declare name="rectheight" type="Integer" array="False" size=""/>
             <output expression="&quot;What is the height of the rectangle?&quot;" newline="True"/>
-            <input variable="height"/>
+            <input variable="rectheight"/>
         </body>
     </function>
     <function name="getWidth" type="Integer" variable="width">

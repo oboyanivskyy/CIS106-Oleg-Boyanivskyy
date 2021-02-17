@@ -1,13 +1,9 @@
-def calculateRectArea():
-    width = getWidth()
-    height = getRectHeight()
-    rectangle = width * height
+def calculateRectArea(rectheight, width):
+    rectangle = rectheight * width
     
     return rectangle
 
-def calculateTriangleArea():
-    base = getBase()
-    height = getHeight()
+def calculateTriangleArea(base, height):
     triangle = base * height * (float(1) / 2)
     
     return triangle
@@ -30,9 +26,9 @@ def getHeight():
 
 def getRectHeight():
     print("What is the height of the rectangle?")
-    height = int(input())
+    rectheight = int(input())
     
-    return height
+    return rectheight
 
 def getWidth():
     print("What is the width of the rectangle?")
@@ -42,6 +38,10 @@ def getWidth():
 
 # Main
 # This program will calculate area for a triangle and rectangle.
-rectangle = calculateRectArea()
-triangle = calculateTriangleArea()
+base = getBase()
+height = getHeight()
+triangle = calculateTriangleArea(base, height)
+width = getWidth()
+rectheight = getRectHeight()
+rectangle = calculateRectArea(width, rectheight)
 displayResults(triangle, rectangle)
