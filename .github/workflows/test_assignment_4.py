@@ -253,7 +253,7 @@ def test_assignment_4_activity_2_seconds_output():
         "Activity 2",
         "",
         "1\n",
-        "31536000",
+        "31536000|3.1536E7",
         "seconds calculation output is incorrect.")
 
     test.check_source_code_output(
@@ -261,7 +261,8 @@ def test_assignment_4_activity_2_seconds_output():
         "Activity 2",
         "",
         "1\n",
-        "seconds.+?31536000|31536000.+?seconds",
+        "seconds.+?31536000|31536000.+?seconds|"
+            "seconds.+?3.1536E7|3.1536E7.+?seconds",
         "seconds output label is missing or incorrect.")
 
 
@@ -539,17 +540,17 @@ def test_assignment_4_activity_4_rectangle_area_output():
         "Activity 4",
         "rectangle",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "1.0",
+        "1",
         "rectangle area calculation output is incorrect. "
-            "Expected 1.0")
+            "Expected 1")
 
     test.check_source_code_output(
         "Assignment 4",
         "Activity 4",
         "rectangle",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "rectangle.+?area.+?1.0|area.+?rectangle.+?1.0|"
-            "1.0.+?rectangle.+?1.0.+?area|area.+?rectangle",
+        "rectangle.+?area.+?1|area.+?rectangle.+?1|"
+            "1.+?rectangle.+?1.+?area|area.+?rectangle",
         "rectangle output label is missing or incorrect.")
 
 
@@ -559,17 +560,17 @@ def test_assignment_4_activity_4_trapezoid_area_output():
         "Activity 4",
         "trapezoid",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "1.0",
+        "1",
         "trapezoid area calculation output is incorrect. "
-            "Expected 1.0")
+            "Expected 1")
 
     test.check_source_code_output(
         "Assignment 4",
         "Activity 4",
         "trapezoid",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "trapezoid.+?area.+?1.0|area.+?trapezoid.+?1.0|"
-            "1.0.+?trapezoid.+?1.0.+?area|area.+?trapezoid",
+        "trapezoid.+?area.+?1|area.+?trapezoid.+?1|"
+            "1.+?trapezoid.+?1.+?area|area.+?trapezoid",
         "trapezoid output label is missing or incorrect.")
 
 
@@ -610,17 +611,17 @@ def test_assignment_4_activity_4_square_area_output():
         "Activity 4",
         "square",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "1.0",
+        "1",
         "square area calculation output is incorrect. "
-            "Expected 1.0")
+            "Expected 1")
 
     test.check_source_code_output(
         "Assignment 4",
         "Activity 4",
         "square",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "square.+?area.+?1.0|area.+?square.+?1.0|"
-            "1.0.+?square.+?1.0.+?area|area.+?square",
+        "square.+?area.+?1|area.+?square.+?1|"
+            "1.+?square.+?1.+?area|area.+?square",
         "square output label is missing or incorrect.")
 
 
@@ -641,17 +642,17 @@ def test_assignment_4_activity_4_parallelogram_area_output():
         "Activity 4",
         "parallelogram",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "1.0",
+        "1",
         "parallelogram area calculation output is incorrect. "
-            "Expected 1.0")
+            "Expected 1")
 
     test.check_source_code_output(
         "Assignment 4",
         "Activity 4",
         "parallelogram",
         "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n",
-        "parallelogram.+?area.+?1.0|area.+?parallelogram.+?1.0|"
-            "1.0.+?parallelogram.+?1.0.+?area|area.+?parallelogram",
+        "parallelogram.+?area.+?1|area.+?parallelogram.+?1|"
+            "1.+?parallelogram.+?1.+?area|area.+?parallelogram",
         "parallelogram output label is missing or incorrect.")
 
 
@@ -790,7 +791,7 @@ def test_assignment_4_activity_5_area_output():
         "Activity 5",
         "",
         "10\n10\n",
-        r"yards.+?11\.11|11\.11.+?yards",
+        r"(area|yards).+?11\.11|11\.11.+?(yards|area)",
         "area output label is missing or incorrect. "
             "Expecting yards. "
             "Include output label on same line as result.")
