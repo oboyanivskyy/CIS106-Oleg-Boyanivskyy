@@ -1,5 +1,3 @@
-#This program will take your dogs name and age, and calculate it in dog years.
-
 def calculateDogYears(hyears):
     years = hyears * 7
     
@@ -21,7 +19,8 @@ def getName():
     return name
 
 # Main
+# This program will input your dog's name and age, and convert it to dog years.
 name = getName()
-years = getAge()
-calculateDogYears(years)
+hyears = getAge()
+years = calculateDogYears(hyears)
 displayResults(years, name)
