@@ -1027,7 +1027,7 @@ def check_source_code_functions(assignment, activity,
             if not function["parameters"]:
                 result += f"\n\nOutput function {function['name']} " \
                     "must accept one or more parameters."
-    
+
     if len(main_functions) < 1:
         result += f"\n\nExpected 1 main function. " \
             f"Found:\n{main_functions}"
@@ -1043,6 +1043,24 @@ def check_source_code_functions(assignment, activity,
     if len(output_functions) < output_count:
         result += f"\n\nExpected {output_count} output functions. " \
             f"Found:\n{output_functions}"
+
+    names = []
+    for function in functions:
+        if function["type"] == "main":
+            continue
+        name = function["name"]
+        if ".lua" in filename or ".py" in filename:
+            if name != name.lower() or "_" not in name:
+                names.append(name)
+        else:
+            if name == name.lower() or "_" in name:
+                names.append(name)
+
+    if len(names) > 0:
+        result += f"\n\nExpected snake_case (Python, Lua), " \
+            "camelCase (Java, JavaScript), or PascalCase (C#) " \
+            "function names. " \
+            f"Found:\n{names}"
 
     if "\n\n" in result:
         assert False, result
