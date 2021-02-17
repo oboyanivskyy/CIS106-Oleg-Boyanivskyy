@@ -1,4 +1,18 @@
-#This program will display your dog's name and calculcate their age in dog years.
+#This program will take your dogs name and age, and calculate it in dog years.
+
+def calculateDogYears(hyears):
+    years = hyears * 7
+    
+    return years
+
+def displayResults(years, name):
+    print(name + " is " + str(years) + " years old in dog years.")
+
+def getAge():
+    print("How old is your dog in human years?")
+    hyears = int(input())
+    
+    return hyears
 
 def getName():
     print("What is the name of your dog?")
@@ -6,14 +20,8 @@ def getName():
     
     return name
 
-def getYears():
-    print("How old is your dog in human years?")
-    hyears = int(input())
-    years = hyears * 7
-    
-    return years
-
 # Main
 name = getName()
-years = getYears()
-print(name + " is " + str(years) + " years old in dog years.")
+years = getAge()
+calculateDogYears(years)
+displayResults(years, name)
