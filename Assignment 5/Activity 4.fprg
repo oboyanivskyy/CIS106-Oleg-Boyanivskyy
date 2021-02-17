@@ -4,18 +4,18 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="OLEG"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2021-02-16 09:15:52 PM"/>
+        <attribute name="saved" value="2021-02-16 09:28:08 PM"/>
         <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTswOToyNTozMCBQTTsyNjQ2"/>
-        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNjswOToxNTo1MiBQTTs1OzI3NjI="/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNjswOToyODowOCBQTTs5OzI3NzE="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="This program will calculate area for a triangle and rectangle."/>
-            <declare name="rectangle" type="Integer" array="False" size=""/>
             <declare name="triangle" type="Integer" array="False" size=""/>
-            <assign variable="rectangle" expression="CalculateRectArea()"/>
+            <declare name="rectangle" type="Integer" array="False" size=""/>
             <assign variable="triangle" expression="CalculateTriangleArea()"/>
+            <assign variable="rectangle" expression="CalculateRectArea()"/>
             <call expression="displayResults(triangle,rectangle)"/>
         </body>
     </function>
@@ -27,7 +27,7 @@
             <declare name="height" type="Integer" array="False" size=""/>
             <assign variable="width" expression="getWidth()"/>
             <assign variable="height" expression="getRectHeight()"/>
-            <assign variable="rectangle" expression="width * height"/>
+            <assign variable="rectangle" expression="height * width"/>
         </body>
     </function>
     <function name="calculateTriangleArea" type="Integer" variable="triangle">
