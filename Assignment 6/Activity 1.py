@@ -3,50 +3,46 @@
 # and displays the result.
 
     
-def getHours():
+def get_hours():
     print("Enter Hours Worked Per Week")
     hours = float(input())
     return hours
 
 
-def getRate():
+def get_rate():
     print("Enter Your Rate Per Hour")
     rate = float(input())
     return rate
 
 
-def calculateWeekly(rate,hours):
+def calculate_weekly(rate, hours):
     weekly = rate * hours
     return weekly
 
 
-def calculateMonthly(weekly):
+def calculate_monthly(weekly):
     monthly = weekly * 4
     return monthly
 
 
-def calculateAnnual(weekly):
+def calculate_annual(weekly):
     annual = weekly * 52
     return annual
 
 
-def displayResult(weekly,monthly,annual):
+def display_result(weekly, monthly, annual):
     print("Your Weekly Pay is $" + str(weekly))
     print(" Monthly Pay is $" + str(monthly))
     print(" Yearly Pay is $" + str(annual))
     
     
 def main():
-    hours = getHours()
-    rate = getRate()
-    weekly = calculateWeekly(rate,hours)
-    monthly = calculateMonthly(weekly)
-    annual = calculateAnnual(weekly)
-    displayResult(weekly,monthly,annual)
+    hours = get_hours()
+    rate = get_rate()
+    weekly = calculate_weekly(rate, hours)
+    monthly = calculate_monthly(weekly)
+    annual = calculate_annual(weekly)
+    display_result(weekly, monthly, annual)
 
 
-main()
-    
-    
-    
-    
+main()                

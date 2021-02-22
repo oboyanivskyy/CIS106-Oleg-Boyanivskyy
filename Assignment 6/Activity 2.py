@@ -3,48 +3,46 @@
 # and seconds.
 
 
-def getAge():
+def get_age():
     print("Enter your age in years.")
     age = float(input())
     return age
 
 
-def calcMonths(age):
+def calc_months(age):
     months = age * 12
     return months
 
 
-def calcDays(age):
+def calc_days(age):
     days = age * 365
     return days
 
 
-def calcHours(days):
+def calc_hours(days):
     hours = days * 24
     return hours
 
 
-def calcSeconds(hours):
+def calc_seconds(hours):
     seconds = hours * 60 * 60
     return seconds
 
 
-def displayResult(months,days,hours,seconds):
+def display_result(months, days, hours, seconds):
     print("You are " + str(months) + " months, ")
     print(str(days) + " days, ")
     print(str(hours) + " hours, and ")
     print(str(seconds) + " seconds old ")
-    
+
+
 def main():
-    age = getAge()
-    months = calcMonths(age)
-    days = calcDays(age)
-    hours = calcHours(days)
-    seconds = calcSeconds(hours)
-    displayResult(months,days,hours,seconds)
+    age = get_age()
+    months = calc_months(age)
+    days = calc_days(age)
+    hours = calc_hours(days)
+    seconds = calc_seconds(hours)
+    display_result(months, days, hours, seconds)
     
-    
-    
+      
 main()
-
-
