@@ -122,6 +122,29 @@ def check_assignment_folder_structure(assignment, pattern, required=False):
     check_files(assignment, path, pattern)
 
 
+def check_duplicate_activities(assignment1, assignment2):
+    path1 = get_path(assignment1)
+    if not path1:
+        pytest.skip()
+        return
+
+    path2 = get_path(assignment2)
+    if not path2:
+        pytest.skip()
+        return
+
+    activities1 = [file for file in os.listdir(path1)]
+    activities2 = [file for file in os.listdir(path2)]
+
+    for activity1 in activities1:
+        for activity2 in activities2:
+            assert re.sub(r"#|\s", "", activity1) != \
+                re.sub(r"#|\s", "", activity2), \
+                f"{assignment2} duplicate activity already completed " \
+                f"in {assignment1}. Select a different activity. " \
+                f"Found {activity2}."
+
+
 def check_files(assignment, path, pattern):
     files = []
     regex = re.compile(pattern, re.IGNORECASE)
@@ -204,12 +227,12 @@ def check_flowgorithm_functions(assignment, activity,
                 "must return a value."
         elif function["type"] == "processing":
             processing_functions.append(function["name"])
-            if not function["parameters"]:
+            if not function["calls"] and not function["parameters"]:
                 result += f"\n\nProcessing function {function['name']} " \
                     "must accept one or more parameters."
-            if not function["returns"]:
+            if not function["calls"] and not function["returns"]:
                 result += f"\n\nProcessing function {function['name']} " \
-                    "must return a value."
+                    "should return a value."
         elif function["type"] == "output":
             output_functions.append(function["name"])
             if not function["parameters"]:
@@ -1016,12 +1039,12 @@ def check_source_code_functions(assignment, activity,
                 "must return a value."
         elif function["type"] == "processing":
             processing_functions.append(function["name"])
-            if not function["parameters"]:
+            if not function["calls"] and not function["parameters"]:
                 result += f"\n\nProcessing function {function['name']} " \
                     "must accept one or more parameters."
-            if not function["returns"]:
+            if  not function["calls"] and not function["returns"]:
                 result += f"\n\nProcessing function {function['name']} " \
-                    "must return a value."
+                    "should return a value."
         elif function["type"] == "output":
             output_functions.append(function["name"])
             if not function["parameters"]:
@@ -1462,7 +1485,15 @@ def get_flowgorithm_functions(path, filename):
         pattern = r"<parameter name=\"(.+?)\""
         parameters = re.findall(pattern, function["text"])
         function["parameters"] = ", ".join(parameters)
+        functions.append(function)
 
+    pattern = r"^\s+<(call|assign).+?expression=\"(.+?)\("
+    for function in functions:
+        matches = re.findall(pattern, function["text"], flags=re.MULTILINE)
+        calls = [match[1] for match in matches]
+        function["calls"] = ", ".join(calls)
+
+    for function in functions:
         if function["name"] == "Main":
             function["type"] = "main"
         elif "<input variable" in function["text"]:
@@ -1472,7 +1503,6 @@ def get_flowgorithm_functions(path, filename):
         else:
             function["type"] = "processing"
 
-        functions.append(function)
     
     return functions
 
@@ -1737,6 +1767,12 @@ def get_python_functions(path, filename):
             function["text"] = text[match.start(0):].strip()
         functions.append(function)
 
+    pattern = r"^\s+(\w+\s*=\s*)?(\w+)\(.+?\)"
+    for function in functions:
+        matches = re.findall(pattern, function["text"], flags=re.MULTILINE)
+        calls = [match[1] for match in matches]
+        function["calls"] = ", ".join(calls)
+
     pattern = r"return (\w+)"
     for function in functions:
         match = re.search(pattern, function["text"])
@@ -1745,6 +1781,7 @@ def get_python_functions(path, filename):
         else:
             function["returns"] = None
 
+    for function in functions:
         if function["name"] == "main":
             function["type"] = "main"
         elif "input(" in function["text"]:
@@ -1819,8 +1856,4 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    path = os.getcwd()
-    filename = "example.lua"
-    functions = get_lua_functions(path, filename)
-    for function in functions:
-        print(function["name"], function["type"], function["returns"], function["parameters"])
+    check_duplicate_activities("Assignment 5", "Assignment 6")
