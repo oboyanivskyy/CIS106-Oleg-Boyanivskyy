@@ -1,29 +1,51 @@
-def calculateDogYears(hyears):
-    if hyears > 2:
-        years = (2 * 10.5)+(hyears-2)*4
-    elif hyears <= 2:
-        years = hyears * 10.5
+# This updated program asks the user for their hours per week,
+# and rate, then calculates weekly, monthly, and annual pay,
+# calculates overtime, and displays the result.
+
     
-    return years
+def get_hours():
+    print("Enter Hours Worked Per Week")
+    hours = float(input())
+    return hours
 
-def displayResults(years, name):
-    print(name + " is " + str(years) + " years old in dog years.")
 
-def getAge():
-    print("How old is your dog in human years?")
-    hyears = int(input())
+def get_rate():
+    print("Enter Your Rate Per Hour")
+    rate = float(input())
+    return rate
+
+
+def calculate_weekly(rate, hours):
+    if hours > 40:
+        weekly = (rate * hours) + (hours - 40) * (0.5 * rate)
+    else:
+        weekly = rate * hours
+    return weekly
+
+
+def calculate_monthly(weekly):
+    monthly = weekly * 4
+    return monthly
+
+
+def calculate_annual(weekly):
+    annual = weekly * 52
+    return annual
+
+
+def display_result(weekly, monthly, annual):
+    print("Your Weekly Pay is $" + str(weekly))
+    print(" Monthly Pay is $" + str(monthly))
+    print(" Yearly Pay is $" + str(annual))
     
-    return hyears
-
-def getName():
-    print("What is the name of your dog?")
-    name = input()
     
-    return name
+def main():
+    hours = get_hours()       
+    rate = get_rate()
+    weekly = calculate_weekly(rate, hours)
+    monthly = calculate_monthly(weekly)
+    annual = calculate_annual(weekly)
+    display_result(weekly, monthly, annual)
 
-# Main
-# This program will input your dog's name and age, and convert it to dog years.
-name = getName()
-hyears = getAge()
-years = calculateDogYears(hyears)
-displayResults(years, name)
+
+main()                

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-03-01 08:36:41 PM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMi0xNTsxMTozMjoxOSBQTTsyNjQ0"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0wMTswODozNjo0MSBQTTs5OzI3NjE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program will input your dog's name and age, and convert it to dog years."/>
+            <declare name="name" type="String" array="False" size=""/>
+            <declare name="hyears" type="Integer" array="False" size=""/>
+            <declare name="years" type="Integer" array="False" size=""/>
+            <assign variable="name" expression="getName()"/>
+            <assign variable="hyears" expression="getAge()"/>
+            <assign variable="years" expression="calculateDogYears(hyears)"/>
+            <call expression="displayResults(years, name)"/>
+        </body>
+    </function>
+    <function name="calculateDogYears" type="Integer" variable="years">
+        <parameters>
+            <parameter name="hyears" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="years" type="Integer" array="False" size=""/>
+            <if expression="hyears &gt; 2">
+                <then>
+                    <assign variable="years" expression="(2 * 10.5) + (hyears - 2) * 4"/>
+                </then>
+                <else>
+                    <assign variable="years" expression="hyears * 10.5"/>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="displayResults" type="None" variable="">
+        <parameters>
+            <parameter name="years" type="Integer" array="False"/>
+            <parameter name="name" type="String" array="False"/>
+        </parameters>
+        <body>
+            <output expression="name &amp; &quot; is &quot; &amp; years &amp; &quot; years old in dog years.&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="getAge" type="Integer" variable="hyears">
+        <parameters/>
+        <body>
+            <declare name="hyears" type="Integer" array="False" size=""/>
+            <output expression="&quot;How old is your dog in human years?&quot;" newline="True"/>
+            <input variable="hyears"/>
+        </body>
+    </function>
+    <function name="getName" type="String" variable="name">
+        <parameters/>
+        <body>
+            <declare name="name" type="String" array="False" size=""/>
+            <output expression="&quot;What is the name of your dog?&quot;" newline="True"/>
+            <input variable="name"/>
+        </body>
+    </function>
+</flowgorithm>
