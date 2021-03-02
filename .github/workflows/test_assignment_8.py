@@ -23,7 +23,7 @@ def test_assignment_8_activity_1_flowgorithm_comments():
 
 
 def test_assignment_8_activity_1_flowgorithm_functions():
-    test.check_flowgorithm_functions("Assignment 8", "Activity 1", 2, 1, 1)
+    test.check_flowgorithm_functions("Assignment 8", "Activity 1", 1, 1, 1)
 
 
 def test_assignment_8_activity_1_flowgorithm_has_matching_source_code_file():
@@ -36,7 +36,7 @@ def test_assignment_8_activity_1_source_code_comments():
 
 
 def test_assignment_8_activity_1_source_code_functions():
-    test.check_source_code_functions("Assignment 8", "Activity 1", 2, 1, 1)
+    test.check_source_code_functions("Assignment 8", "Activity 1", 1, 1, 1)
 
 
 def test_assignment_8_activity_1_source_code_formatting():
@@ -81,7 +81,8 @@ def test_assignment_8_activity_1_output():
         "",
         "1\n3\n",
         r"1 \* 1 = 1\n1 \* 2 = 2\n1 \* 3 = 3",
-        "output is incorrect.")
+        "output is incorrect. Expected:\n"
+            "1 * 1 = 1\n1 * 2 = 2\n1 * 3 = 3")
 
     test.check_source_code_output(
         "Assignment 8",
@@ -89,7 +90,8 @@ def test_assignment_8_activity_1_output():
         "",
         "3\n5\n",
         r"3 \* 1 = 3\n3 \* 2 = 6\n3 \* 3 = 9\n3 \* 4 = 12\n3 \* 5 = 15",
-        "output is incorrect.")
+        "output is incorrect. Expected:\n"
+            "3 * 1 = 3\n3 * 2 = 6\n3 * 3 = 9\n3 * 4 = 12\n3 * 5 = 15")
 
 
 def test_assignment_8_activity_2_flowgorithm_comments():
@@ -97,7 +99,7 @@ def test_assignment_8_activity_2_flowgorithm_comments():
 
 
 def test_assignment_8_activity_2_flowgorithm_functions():
-    test.check_flowgorithm_functions("Assignment 8", "Activity 2", 2, 1, 1)
+    test.check_flowgorithm_functions("Assignment 8", "Activity 2", 1, 1, 1)
 
 
 def test_assignment_8_activity_2_flowgorithm_has_matching_source_code_file():
@@ -110,7 +112,7 @@ def test_assignment_8_activity_2_source_code_comments():
 
 
 def test_assignment_8_activity_2_source_code_functions():
-    test.check_source_code_functions("Assignment 8", "Activity 2", 2, 1, 1)
+    test.check_source_code_functions("Assignment 8", "Activity 2", 1, 1, 1)
 
 
 def test_assignment_8_activity_2_source_code_formatting():
@@ -227,7 +229,7 @@ def test_assignment_8_activity_3_input_labels():
         "Activity 3",
         "",
         "1\n",
-        "number|times",
+        "number|times|iterations",
         "Input label(s) missing or incorrect. "
             "Expecting number.")
 
@@ -271,6 +273,6 @@ def test_assignment_8_activity_3_output():
         "",
         "4\n",
         r"3\.14.+?pi|pi.+?3\.14",
-        "(Pi output label is missing or incorrect."
+        "(Pi output label is missing or incorrect. "
             "Expected pi. "
             "Include output label on same line as result.")

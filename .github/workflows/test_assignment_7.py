@@ -863,7 +863,8 @@ def test_assignment_7_activity_6_output():
         "",
         "3\n",
         "extra small",
-        "sock size calculation output is incorrect.")
+        "sock size calculation output is incorrect. "
+            "Expecting extra small.")
 
     test.check_source_code_output(
         "Assignment 7",
@@ -871,7 +872,8 @@ def test_assignment_7_activity_6_output():
         "",
         "6\n",
         "small",
-        "sock size calculation output is incorrect.")
+        "sock size calculation output is incorrect. "
+            "Expecting small.")
 
     test.check_source_code_output(
         "Assignment 7",
@@ -879,7 +881,8 @@ def test_assignment_7_activity_6_output():
         "",
         "6.5\n",
         "medium",
-        "sock size calculation output is incorrect.")
+        "sock size calculation output is incorrect. "
+            "Expecting medium.")
 
     test.check_source_code_output(
         "Assignment 7",
@@ -887,7 +890,8 @@ def test_assignment_7_activity_6_output():
         "",
         "10\n",
         "large",
-        "sock size calculation output is incorrect.")
+        "sock size calculation output is incorrect. "
+            "Expecting large.")
 
     test.check_source_code_output(
         "Assignment 7",
@@ -895,7 +899,8 @@ def test_assignment_7_activity_6_output():
         "",
         "12.5\n",
         "extra large",
-        "sock size calculation output is incorrect.")
+        "sock size calculation output is incorrect. "
+            "Expecting extra large.")
 
     test.check_source_code_output(
         "Assignment 7",
