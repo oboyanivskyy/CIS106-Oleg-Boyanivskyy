@@ -12,6 +12,7 @@ jobs:
   build:
     name: Run CIS 106 Python Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     
     steps:
     - name: Copy repository
