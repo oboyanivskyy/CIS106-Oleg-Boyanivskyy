@@ -881,7 +881,7 @@ def check_readme_assignment_content(assignment):
         return
 
     text = read_file(os.getcwd(), "README.md")
-    pattern = "## " + assignment + r"\s+(.+?)(\n#)?$"
+    pattern = "## *" + assignment + r"\s+(.+?)(\n#)?$"
     regex = re.compile(pattern, re.IGNORECASE | re.DOTALL)
     match = regex.search(text)
     if not match:
@@ -1649,9 +1649,9 @@ def get_javascript_functions(path, filename):
         calls = [match[1] for match in matches]
         function["calls"] = ", ".join(calls)
 
-    pattern = r"return (\w+)"
+    pattern = r"return (.+?)$"
     for function in functions:
-        match = re.search(pattern, function["text"])
+        match = re.search(pattern, function["text"], re.MULTILINE)
         if match:
             function["returns"] = match.group(1)
         else:
@@ -1731,9 +1731,9 @@ def get_lua_functions(path, filename):
         calls = [match[1] for match in matches]
         function["calls"] = ", ".join(calls)
 
-    pattern = r"return (\w+)"
+    pattern = r"return (.+?)$"
     for function in functions:
-        match = re.search(pattern, function["text"])
+        match = re.search(pattern, function["text"], re.MULTILINE)
         if match:
             function["returns"] = match.group(1)
         else:
@@ -1745,6 +1745,8 @@ def get_lua_functions(path, filename):
         elif "io.read" in function["text"]:
             function["type"] = "input"
         elif "print" in function["text"]:
+            function["type"] = "output"
+        elif "io.write" in function["text"]:
             function["type"] = "output"
         else:
             function["type"] = "processing"
@@ -1820,9 +1822,9 @@ def get_python_functions(path, filename):
         calls = [match[1] for match in matches]
         function["calls"] = ", ".join(calls)
 
-    pattern = r"return (\w+)"
+    pattern = r"return (.+?)$"
     for function in functions:
-        match = re.search(pattern, function["text"])
+        match = re.search(pattern, function["text"], re.MULTILINE)
         if match:
             function["returns"] = match.group(1)
         else:
