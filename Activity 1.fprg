@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-03-08 10:55:10 AM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0wODsxMDoxNToxNCBBTTsyNjI3"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0wODsxMDo1NToxMCBBTTsyOzI3MzY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program will generate a list of 5 multiplication expressions for a given value."/>
+            <declare name="value" type="Integer" array="False" size=""/>
+            <assign variable="value" expression="getvalue()"/>
+            <call expression="whileloop(value)"/>
+        </body>
+    </function>
+    <function name="getvalue" type="Integer" variable="value">
+        <parameters/>
+        <body>
+            <declare name="value" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter your value&quot;" newline="True"/>
+            <input variable="value"/>
+        </body>
+    </function>
+    <function name="whileloop" type="None" variable="">
+        <parameters>
+            <parameter name="value" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <declare name="increment" type="Integer" array="False" size=""/>
+            <assign variable="increment" expression="1"/>
+            <assign variable="count" expression="0"/>
+            <declare name="stop" type="Integer" array="False" size=""/>
+            <while expression="count &lt;= 4">
+                <assign variable="count" expression="count + increment"/>
+                <output expression="value &amp; &quot; * &quot; &amp; count &amp; &quot; = &quot; &amp; value*count" newline="True"/>
+            </while>
+        </body>
+    </function>
+</flowgorithm>
