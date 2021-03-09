@@ -1,10 +1,10 @@
-def getvalue():
+def get_value():
     print("Enter your value")
     value = int(input())
     
     return value
 
-def whileloop(value):
+def while_loop(value):
     increment = 1
     count = 0
     while count <= 4:
@@ -13,5 +13,5 @@ def whileloop(value):
 
 # Main
 # This program will generate a list of 5 multiplication expressions for a given value.
-value = getvalue()
-whileloop(value)
+value = get_value()
+while_loop(value)
