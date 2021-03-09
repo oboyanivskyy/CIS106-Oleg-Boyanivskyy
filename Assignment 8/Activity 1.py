@@ -4,14 +4,22 @@ def get_value():
     
     return value
 
-def while_loop(value):
+def get_expressions():
+    print ("Enter how many expressions")
+    expressions = int(input())
+    
+    return expressions
+
+def calculate_expressions(value, expressions):
     increment = 1
     count = 0
-    while count <= 4:
+    while count < expressions:
         count = count + increment
         print(str(value) + " * " + str(count) + " = " + str(value * count))
 
 # Main
-# This program will generate a list of 5 multiplication expressions for a given value.
+# This program will ask for how many expressions you want for a given value,
+# and calculate them.
 value = get_value()
-while_loop(value)
+expressions = get_expressions()
+calculate_expressions(value, expressions)

@@ -8,6 +8,7 @@ def get_amount():
     
     return amount
 
+
 def get_score(amount):
     count = 1
     totalscore = 0
@@ -19,19 +20,21 @@ def get_score(amount):
     
     return totalscore
 
-def calculate_average(amount,totalscore):
-    total = totalscore/amount
+
+def calculate_average(amount, totalscore):
+    total = totalscore / amount
     
     return total
 
+
 def display_average(total):
-    print("Your average for entered scores is ")
-    print(str(total))
+    print("Your average for entered scores is " + str(total))
+    
     
 def main():
     amount = get_amount()
     totalscore = get_score(amount)
-    total = calculate_average(amount,totalscore)
+    total = calculate_average(amount, totalscore)
     display_average(total)
     
     
