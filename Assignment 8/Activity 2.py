@@ -2,6 +2,7 @@
 # add it to a total, calculate, and display,
 # the average for the entered scores.
 
+
 def get_amount():
     print("How many scores do you want to enter?")
     amount = int(input())
@@ -9,12 +10,18 @@ def get_amount():
     return amount
 
 
-def get_score(amount):
+def get_score(count):
+    print("Enter score " + str(count))
+    score = int(input())
+    
+    return score
+
+
+def calculate_score(amount):
     count = 1
     totalscore = 0
     while count <= amount:
-        print("Enter score " + str(count))
-        score = int(input())
+        score = get_score(count)
         count = count + 1
         totalscore = totalscore + score
     
@@ -33,7 +40,7 @@ def display_average(total):
     
 def main():
     amount = get_amount()
-    totalscore = get_score(amount)
+    totalscore = calculate_score(amount)
     total = calculate_average(amount, totalscore)
     display_average(total)
     
