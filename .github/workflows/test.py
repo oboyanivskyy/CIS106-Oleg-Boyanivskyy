@@ -819,6 +819,11 @@ def check_python_output(assignment, activity, file_pattern,
         pytest.skip()
         return
 
+    assert "Traceback" not in output, \
+        f"{assignment} {activity} {message}\n" \
+        f"Input:\n{input}\n" \
+        f"Output:\n{output}"
+
     regex = re.compile(output_pattern, re.IGNORECASE)
     match = regex.search(output)
     assert match, \
@@ -1865,9 +1870,8 @@ def get_python_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input,
-                f"{exception.output}\n"
-                f"{exception.stderr}")
+            output = f"{exception.output}\n{exception.stderr}"
+            output_cache(path, filename, input, output)
 
     return output
 
@@ -1905,4 +1909,10 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    check_python_formatting("Assignment 6", "Activity 2")
+    check_source_code_output(
+        "Assignment 8",
+        "Activity 2",
+        "",
+        "2\n1\n2\n",
+        r"1.5",
+        "average is incorrect.")
