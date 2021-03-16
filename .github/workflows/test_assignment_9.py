@@ -67,7 +67,7 @@ def test_assignment_9_activity_1_output_negative_termination():
     test.check_source_code_output(
         "Assignment 9",
         "Activity 1",
-        "negative",
+        "",
         "1\n2\n3\n-1\n",
         r"2.+?average|average.+?2",
         "average calculation output is incorrect.")
@@ -75,10 +75,26 @@ def test_assignment_9_activity_1_output_negative_termination():
     test.check_source_code_output(
         "Assignment 9",
         "Activity 1",
-        "negative",
+        "",
         "1\n2\n-1\n",
         r"1\.5.+?average|average.+?1\.5",
         "average calculation output is incorrect.")
+
+    test.check_source_code_output(
+        "Assignment 9",
+        "Activity 1",
+        "",
+        "1\n2\n-2\n",
+        r"1\.5.+?average|average.+?1\.5",
+        "average calculation output is incorrect.")
+
+    test.check_source_code_output(
+        "Assignment 9",
+        "Activity 1",
+        "",
+        "3\n0\n-1\n",
+        r"1\.5.+?average|average.+?1\.5",
+        "average calculation output is incorrect. 0 is a valid input value.")
 
 
 def test_assignment_9_activity_2_flowgorithm_comments():
@@ -149,7 +165,7 @@ def test_assignment_9_activity_2_output():
         "Activity 2",
         "",
         "l\ne\n",
-        r"25",
+        r"24|25",
         "lower guess is incorrect.")
 
     test.check_source_code_output(
