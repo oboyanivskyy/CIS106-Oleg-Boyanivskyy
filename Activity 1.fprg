@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-03-15 10:40:52 PM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0xNTswODo0OToyMiBQTTsyNjUz"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0xNTsxMDo0MDo1MiBQTTsyMTsyNzk4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program will ask for grade scores repeatedly until you enter a negative value, and then it will calculate and display the average for the entered scores."/>
+            <declare name="amount" type="Integer" array="False" size=""/>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <declare name="score" type="Integer" array="False" size=""/>
+            <declare name="totalscore" type="Integer" array="False" size=""/>
+            <assign variable="amount" expression="calculatescore()"/>
+            <call expression="displayscore(amount)"/>
+        </body>
+    </function>
+    <function name="calculateaverage" type="Integer" variable="amount">
+        <parameters>
+            <parameter name="count" type="Integer" array="False"/>
+            <parameter name="totalscore" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="amount" type="Integer" array="False" size=""/>
+            <assign variable="amount" expression="totalscore/count"/>
+        </body>
+    </function>
+    <function name="calculatescore" type="Integer" variable="totalscore">
+        <parameters/>
+        <body>
+            <declare name="totalscore" type="Integer" array="False" size=""/>
+            <declare name="score" type="Integer" array="False" size=""/>
+            <declare name="amount" type="Integer" array="False" size=""/>
+            <declare name="count" type="Integer" array="False" size=""/>
+            <assign variable="count" expression="1"/>
+            <assign variable="totalscore" expression="0"/>
+            <do expression="score &gt;= 0">
+                <assign variable="count" expression="count + 1"/>
+                <assign variable="score" expression="getscore()"/>
+                <assign variable="totalscore" expression="totalscore + score"/>
+            </do>
+            <assign variable="totalscore" expression="totalscore - score"/>
+            <call expression="calculateaverage(totalscore, count)"/>
+        </body>
+    </function>
+    <function name="displayscore" type="None" variable="">
+        <parameters>
+            <parameter name="amount" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <output expression="&quot;Your average for entered scores is &quot; &amp; amount" newline="True"/>
+        </body>
+    </function>
+    <function name="getscore" type="Integer" variable="score">
+        <parameters/>
+        <body>
+            <declare name="score" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter your score, if done then enter a negative score.&quot;" newline="True"/>
+            <input variable="score"/>
+        </body>
+    </function>
+</flowgorithm>
