@@ -37,9 +37,12 @@ def display_result(weekly, monthly, annual):
     print("Your Weekly Pay is $" + str(weekly))
     print(" Monthly Pay is $" + str(monthly))
     print(" Yearly Pay is $" + str(annual))
+
+
+def do_loop():
     yes = str("yes")
     while True:
-        print("Type yes to make another calculation. If done, type anything else.")
+        print("Type yes to make another calculation.")
         answer = str(input())
         if not(yes == answer): break
         main()
@@ -52,6 +55,7 @@ def main():
     monthly = calculate_monthly(weekly)
     annual = calculate_annual(weekly)
     display_result(weekly, monthly, annual)
+    do_loop()
 
 
 main()                
