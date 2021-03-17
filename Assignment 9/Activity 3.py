@@ -45,8 +45,14 @@ def do_loop():
         print("Type yes to make another calculation.")
         answer = str(input())
         if not(yes == answer): break
-        main()
-        
+        hours = get_hours()       
+        rate = get_rate()
+        weekly = calculate_weekly(rate, hours)
+        monthly = calculate_monthly(weekly)
+        annual = calculate_annual(weekly)
+        display_result(weekly, monthly, annual)
+    return yes
+    
     
 def main():
     hours = get_hours()       
@@ -55,7 +61,7 @@ def main():
     monthly = calculate_monthly(weekly)
     annual = calculate_annual(weekly)
     display_result(weekly, monthly, annual)
-    do_loop()
+    yes = do_loop()
 
 
 main()                
