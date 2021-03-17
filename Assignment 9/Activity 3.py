@@ -44,7 +44,7 @@ def do_loop():
     while True:
         print("Type yes to make another calculation.")
         answer = str(input())
-        if not(yes == answer): break
+        if not(answer == yes): break
         hours = get_hours()       
         rate = get_rate()
         weekly = calculate_weekly(rate, hours)
