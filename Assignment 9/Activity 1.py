@@ -1,20 +1,19 @@
-def calculateaverage(count, totalscore):
-    amount = float(totalscore) / count
+def calculateaverage(totalscore, count):
+    amount = totalscore / count
     
     return amount
 
 def calculatescore():
-    count = 1
+    count = 0
     totalscore = 0
     while True:    #This simulates a Do Loop
         count = count + 1
         score = getscore()
         totalscore = totalscore + score
         if not(score >= 0): break   #Exit loop
-    totalscore = totalscore - score
-    calculateaverage(totalscore, count)
+        amount = calculateaverage(totalscore, count)
     
-    return totalscore
+    return amount
 
 def displayscore(amount):
     print("Your average for entered scores is " + str(amount))
