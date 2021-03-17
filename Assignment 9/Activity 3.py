@@ -39,19 +39,13 @@ def display_result(weekly, monthly, annual):
     print(" Yearly Pay is $" + str(annual))
 
 
-def do_loop():
-    yes = str("yes")
-    while True:
-        print("Type yes to make another calculation.")
-        answer = str(input())
-        if not(answer == yes): break
-        hours = get_hours()       
-        rate = get_rate()
-        weekly = calculate_weekly(rate, hours)
-        monthly = calculate_monthly(weekly)
-        annual = calculate_annual(weekly)
-        display_result(weekly, monthly, annual)
-    return answer
+def process_pay():
+    hours = get_hours()       
+    rate = get_rate()
+    weekly = calculate_weekly(rate, hours)
+    monthly = calculate_monthly(weekly)
+    annual = calculate_annual(weekly)
+    display_result(weekly, monthly, annual)
 
 
 def loop_end(answer):
@@ -59,14 +53,12 @@ def loop_end(answer):
     
     
 def main():
-    hours = get_hours()       
-    rate = get_rate()
-    weekly = calculate_weekly(rate, hours)
-    monthly = calculate_monthly(weekly)
-    annual = calculate_annual(weekly)
-    display_result(weekly, monthly, annual)
-    answer = do_loop()
-    loop_end(answer)
+    while True:
+        process_pay()
+        print("Type yes to make another calculation.")
+        answer = str(input())
+        if not(answer == "yes"):
+            break
 
 
-main()                
+main()
