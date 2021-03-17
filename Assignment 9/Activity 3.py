@@ -51,6 +51,11 @@ def do_loop():
         monthly = calculate_monthly(weekly)
         annual = calculate_annual(weekly)
         display_result(weekly, monthly, annual)
+    return answer
+
+
+def loop_end(answer):
+    print("Thank you for using the program")
     
     
 def main():
@@ -60,7 +65,8 @@ def main():
     monthly = calculate_monthly(weekly)
     annual = calculate_annual(weekly)
     display_result(weekly, monthly, annual)
-    do_loop()
+    answer = do_loop()
+    loop_end(answer)
 
 
 main()                
