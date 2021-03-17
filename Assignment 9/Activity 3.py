@@ -51,7 +51,6 @@ def do_loop():
         monthly = calculate_monthly(weekly)
         annual = calculate_annual(weekly)
         display_result(weekly, monthly, annual)
-    return yes
     
     
 def main():
@@ -61,7 +60,7 @@ def main():
     monthly = calculate_monthly(weekly)
     annual = calculate_annual(weekly)
     display_result(weekly, monthly, annual)
-    yes = do_loop()
+    do_loop()
 
 
 main()                
