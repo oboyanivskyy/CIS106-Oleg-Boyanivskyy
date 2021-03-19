@@ -1479,7 +1479,7 @@ def get_files(path, pattern):
     with os.scandir(path) as iterator:
         for entry in iterator:
             if entry.is_file():
-                match = regex.match(entry.name)
+                match = regex.search(entry.name)
                 if match:
                     files.append(entry.name)
     return files
@@ -1909,10 +1909,7 @@ def read_file(path, filename):
 
 
 if __name__ == "__main__":
-    check_source_code_output(
-        "Assignment 8",
-        "Activity 2",
-        "",
-        "2\n1\n2\n",
-        r"1.5",
-        "average is incorrect.")
+    check_assignment_folder_structure(
+        "Assignment 10",
+        r"(nested )?activity[ _]?#?\d\.(class|fprg|cs|java|js|lua|py)|"
+        "package-lock.json|test.csproj")
