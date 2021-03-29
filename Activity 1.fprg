@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="OLEG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-03-29 09:21:30 AM"/>
+        <attribute name="created" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0yOTswODo1NTo1OSBBTTsyNjUw"/>
+        <attribute name="edited" value="T0xFRztERVNLVE9QLVAyU1BPN0E7MjAyMS0wMy0yOTswOToyMTozMCBBTTs4OzI3NDg="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="This program will ask for a value and amount of expressions, and will display those as multiplcation expressions."/>
+            <declare name="value" type="Integer" array="False" size=""/>
+            <declare name="expression" type="Integer" array="False" size=""/>
+            <assign variable="value" expression="getvalue()"/>
+            <assign variable="expression" expression="getexpression()"/>
+            <call expression="calculateexpression(value, expression)"/>
+        </body>
+    </function>
+    <function name="calculateexpression" type="None" variable="result">
+        <parameters>
+            <parameter name="value" type="Integer" array="False"/>
+            <parameter name="expression" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="increment" type="Integer" array="False" size=""/>
+            <for variable="increment" start="1" end="expression" direction="inc" step="1">
+                <call expression="displayresult(value, increment)"/>
+            </for>
+        </body>
+    </function>
+    <function name="displayresult" type="None" variable="">
+        <parameters>
+            <parameter name="value" type="Integer" array="False"/>
+            <parameter name="increment" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <output expression="value &amp; &quot; * &quot; &amp; increment &amp; &quot; = &quot; &amp; value * increment" newline="True"/>
+        </body>
+    </function>
+    <function name="getexpression" type="Integer" variable="expression">
+        <parameters/>
+        <body>
+            <declare name="expression" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter how many expressions you would like to calculate.&quot;" newline="True"/>
+            <input variable="expression"/>
+        </body>
+    </function>
+    <function name="getvalue" type="Integer" variable="value">
+        <parameters/>
+        <body>
+            <declare name="value" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter the value you would like to use for the expression.&quot;" newline="True"/>
+            <input variable="value"/>
+        </body>
+    </function>
+</flowgorithm>
