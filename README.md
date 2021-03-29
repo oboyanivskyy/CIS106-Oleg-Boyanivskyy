@@ -37,3 +37,8 @@ In Assignment 8, this is the first time we are introduced to loops and the diffe
 In Assignment 9 we continue with learning about loops by being introduced to a Do While loop. Compared to last week, I struggled quite a bit with understanding how the Do While loop works. With one of my activities, I can't seem to get it to make the proper calculation with this loop. I believe I may be writing an incorrect value somewhere or just forgetting a step, but I can't seem to figure it out just yet. I will try to reread more of the book and go over the examples again to get a better understanding. Overall, I can see how Do While loops can help in certain situations, they are just harder for me to understand than While loops.
 
 ## Assignment 10
+
+Coming back from Spring Break and jumping into Assignment 10 was surprisingly easier than I expected. Using my previous knowledge from Assignments 8 and 9, "for loops" were a lot easier to grasp than the previous types of loops. I feel that they are easier to implement into a program when needed to be used to count. Especially compared to "while loops" as the program kept testing to check if the loop was satisfied, "for loops" allowed me to make less errors when designing the program, and I also didn't end up making an infinite loop at all. Overall, I enjoyed learning about this type of loop and adding it to my programming knowledge.
+
+## Assignment 11
+
