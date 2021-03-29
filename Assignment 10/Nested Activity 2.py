@@ -42,7 +42,8 @@ def main():
         process_score()
         print("Type yes to calculate new average")
         answer = str(input())
-        if not(answer == "yes"): break
+        if not(answer == "yes"):
+            break
         
 
 main()
