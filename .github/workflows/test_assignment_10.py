@@ -334,7 +334,7 @@ def test_assignment_10_nested_activity_1_input_labels():
         "Nested Activity 1",
         "",
         "1\n3\n",
-        r"(start|begin).+?\n.+?end",
+        r"(start|begin).+?\n.+?(stop|end)",
         "Input label(s) missing or incorrect. "
             "Expecting starting and ending.")
 
@@ -345,7 +345,7 @@ def test_assignment_10_nested_activity_1_output():
         "Nested Activity 1",
         "",
         "1\n3\n",
-        r"1\s+2\s+3\s+.+?2\s+4\s+6\s+.+?3\s+6\s+9",
+        r"1\s+2\s+3\s*\n+.*?2\s+4\s+6\s*\n+.*?3\s+6\s+9",
         "output is incorrect. Check multiplication values.")
 
     test.check_source_code_output(
@@ -353,7 +353,7 @@ def test_assignment_10_nested_activity_1_output():
         "Nested Activity 1",
         "",
         "1\n3\n",
-        r"1\s+2\s+3\s+.*?1\s+2\s+3\s+.+?2\s+4\s+6\s+.+?3\s+6\s+9",
+        r"1\s+2\s+3\s*\n+.*?1\s+2\s+3\s*\n+.*?2\s+4\s+6\s*\n+.*?3\s+6\s+9",
         "output is incorrect. Check column headings.")
 
     test.check_source_code_output(
@@ -361,7 +361,7 @@ def test_assignment_10_nested_activity_1_output():
         "Nested Activity 1",
         "",
         "1\n3\n",
-        r"1\s+1\s+2\s+3\s+2\s+2\s+4\s+6\s+3\s+3\s+6\s+9",
+        r"1\s+1\s+2\s+3\s*\n+2\s+2\s+4\s+6\s*\n+3\s+3\s+6\s+9",
         "output is incorrect. Check row headings.")
 
     test.check_source_code_output(
@@ -369,7 +369,7 @@ def test_assignment_10_nested_activity_1_output():
         "Nested Activity 1",
         "",
         "3\n5\n",
-        r"9\s+12\s+15\s+.+?12\s+16\s+20\s+.+?15\s+20\s+25",
+        r"9\s+12\s+15\s*\n+.*?12\s+16\s+20\s*\n+.*?15\s+20\s+25",
         "output is incorrect. Check multiplication values.")
 
     test.check_source_code_output(
@@ -377,7 +377,7 @@ def test_assignment_10_nested_activity_1_output():
         "Nested Activity 1",
         "",
         "3\n5\n",
-        r"3\s+4\s+5\s+.*?9\s+12\s+15\s+.+?12\s+16\s+20\s+.+?15\s+20\s+25",
+        r"3\s+4\s+5\s*\n+.*?9\s+12\s+15\s*\n+.*?12\s+16\s+20\s*\n+.*?15\s+20\s+25",
         "output is incorrect. Check column headings.")
 
     test.check_source_code_output(
@@ -385,7 +385,7 @@ def test_assignment_10_nested_activity_1_output():
         "Nested Activity 1",
         "",
         "3\n5\n",
-        r"3\s+9\s+12\s+15\s+4\s+12\s+16\s+20\s+5\s+15\s+20\s+25\s+",
+        r"3\s+9\s+12\s+15\s*\n+4\s+12\s+16\s+20\s*\n+5\s+15\s+20\s+25",
         "output is incorrect. Check row headings.")
 
 

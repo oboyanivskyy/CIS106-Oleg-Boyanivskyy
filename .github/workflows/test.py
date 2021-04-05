@@ -235,9 +235,9 @@ def check_flowgorithm_functions(assignment, activity,
                     "should return a value."
         elif function["type"] == "output":
             output_functions.append(function["name"])
-            if not function["parameters"]:
-                result += f"\n\nOutput function {function['name']} " \
-                    "must accept one or more parameters."
+            # if not function["parameters"]:
+            #     result += f"\n\nOutput function {function['name']} " \
+            #         "must accept one or more parameters."
     
     if len(main_functions) < 1:
         result += f"\n\nExpected 1 main function. " \
@@ -442,8 +442,8 @@ def check_flowgorithm_output_functions(assignment, activity, count):
         pattern = "<parameter name=(.+?).+?>"
         parameters = re.findall(pattern, function)
 
-        assert len(parameters) > 0, \
-            f"output function {name} should have parameters to output."
+        # assert len(parameters) > 0, \
+        #     f"output function {name} should have parameters to output."
 
         matches.append(name)
 
@@ -1073,9 +1073,9 @@ def check_source_code_functions(assignment, activity,
                     "should return a value."
         elif function["type"] == "output":
             output_functions.append(function["name"])
-            if not function["parameters"]:
-                result += f"\n\nOutput function {function['name']} " \
-                    "must accept one or more parameters."
+            # if not function["parameters"]:
+            #     result += f"\n\nOutput function {function['name']} " \
+            #         "must accept one or more parameters."
 
     if len(main_functions) < 1:
         result += f"\n\nExpected 1 main function. " \
