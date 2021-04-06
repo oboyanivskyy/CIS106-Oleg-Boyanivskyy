@@ -67,7 +67,7 @@ def test_assignment_11_defined_activity_1_input_labels():
         "Assignment 11",
         "Defined Activity 1",
         "",
-        "2020\n1\n",
+        "2020\n1\n0\n0\n",
         "year.*?\n?.*?month",
         "Input label(s) missing or incorrect. "
             "Expecting year and month.")
@@ -109,6 +109,17 @@ def test_assignment_11_defined_activity_1_output():
         r"February.+?28",
         "output is incorrect. Expected:\n"
             "February 2100 has 28 days")
+
+
+    test.check_source_code_output(
+        "Assignment 11",
+        "Defined Activity 1",
+        "",
+        "2020\n1\n2020\n12\n2020\n0\n",
+        r"January.+?31.+?December.+?31",
+        "output is incorrect. Expected:\n"
+            "January 2020 has 31 days..."
+            "December 2020 has 31 days")
 
 
     test.check_source_code_output(
@@ -460,7 +471,7 @@ def test_assignment_11_fixed_activity_3_output():
         "Assignment 11",
         "Fixed Activity 3",
         "",
-        "2\n1\n2\n3\n",
-        r"3.+?2.+?1.+?",
+        "3\n80\n90\n100\n",
+        r"100.+?90.+?80",
         "sort sequence is incorrect. "
-            "Expected 3...2...1.")
+            "Expected 100...90...80.")

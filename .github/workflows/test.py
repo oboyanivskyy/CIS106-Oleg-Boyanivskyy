@@ -1350,7 +1350,7 @@ def check_source_code_output(assignment, activity, file_pattern,
         pytest.skip()
         return
 
-    regex = re.compile(output_pattern, re.IGNORECASE)
+    regex = re.compile(output_pattern, re.IGNORECASE | re.DOTALL)
     match = regex.search(output)
     assert match, \
         f"{assignment} {activity} {message}\n" \
