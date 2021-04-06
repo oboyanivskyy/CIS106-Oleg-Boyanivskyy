@@ -42,3 +42,7 @@ Coming back from Spring Break and jumping into Assignment 10 was surprisingly ea
 
 ## Assignment 11
 
+For Assignment 11, we are pretty much done with the basic logic aspects of a program and are introduced into Arrays. At first glance reading the chapter, it makes sense as to why Arrays are used. After reading the chapter and looking through the examples, I began writing the structure of my programs and realized that Arrays are harder to implement than I thought. I believe for the fixed length arrays, I was able to get a good amount done however I'm still having issues writing the Array code in. For defined value arrays, it was a little harder as for the fixed length activity, I was able to use some of the Python example code for that particular activity. Overall, I could see the usefullness, but at the moment, I'm having a bit of trouble with actually implementing the Array.
+
+## Assignment 12
+
