@@ -289,7 +289,7 @@ def test_assignment_11_fixed_activity_1_output():
         "Fixed Activity 1",
         "",
         "2\n1\n2\n",
-        r"1\.5.+?average|average.+?1\.5",
+        r"1\.5.+?(average|mean)|(average|mean).+?1\.5",
         "average output label is missing or incorrect. "
             "Expected average. "
             "Include output label on same line as result.")
@@ -299,7 +299,7 @@ def test_assignment_11_fixed_activity_1_output():
         "Fixed Activity 1",
         "",
         "2\n1\n2\n",
-        r"1.+?low|low.+?1",
+        r"1.+?(low|minimum)|(low|minimum).+?1",
         "low output value or label is missing or incorrect. "
             "Expected low: 1. "
             "Include output label on same line as result.")
@@ -309,7 +309,7 @@ def test_assignment_11_fixed_activity_1_output():
         "Fixed Activity 1",
         "",
         "2\n1\n2\n",
-        r"2.+?high|high.+?2",
+        r"2.+?(high|maximum)|(high|maximum).+?2",
         "low output value or label is missing or incorrect. "
             "Expected high: 2. "
             "Include output label on same line as result.")
