@@ -1281,7 +1281,7 @@ def check_source_code_operator_formatting(assignment, activity):
     matches = re.findall(pattern, text)
     matches = sorted(list(set(matches)))
 
-    pattern = r"\+=|-=|\*=|\/=|<=|>=|==|!=|===|!==|-\w+"
+    pattern = r"\+=|-=|\*=|\/=|<=|>=|==|!=|===|!==|-\w+|\+\+|--|\/\/"
     for index in range(len(matches) - 1, -1, -1):
         if re.search(pattern, matches[index]):
             matches.remove(matches[index])
