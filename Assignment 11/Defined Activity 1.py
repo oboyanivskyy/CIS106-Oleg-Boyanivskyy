@@ -36,8 +36,7 @@ def display_array(month, year, monthdates):
               "July", "August", "September",
               "October", "November", "December"]
     month = month - 1
-    print("There are", monthdates[month], "days",
-        "in the month of", months[month], "in", year)
+    print(months[month], year, "has", monthdates[month], "days")
     
 
 def main():
