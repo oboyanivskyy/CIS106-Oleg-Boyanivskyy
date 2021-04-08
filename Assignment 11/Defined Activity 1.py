@@ -42,11 +42,11 @@ def display_array(month, year, monthdates):
 
 def main():
     while True:
-        month = get_month()
-        if(month > 12 or month < 1):
-            break
         year = get_year()
         if(year < 1582):
+            break
+        month = get_month()
+        if(month > 12 or month < 1):
             break
         monthdates = calculate_monthdates(year)
         display_array(month, year, monthdates)
