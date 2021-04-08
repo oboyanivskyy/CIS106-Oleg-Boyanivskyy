@@ -12,16 +12,14 @@ def get_amount():
 
 def get_scores(amount):
     scores = [None] * amount
-    for index in range(len(scores)):
-        print("Enter your score: ")
-        index = int(input())
-        
-        scores.append(index)
-        
+    for index in range(0, amount):
+        print("Enter your score:")
+        scores[index] = int(input())
+
     return scores
         
     
-def max(scores):
+def calculate_maximum(scores):
     maximum = scores[0]
     for index in range(0, len(scores)):
         if maximum < scores[index]:
@@ -29,7 +27,7 @@ def max(scores):
     return maximum
 
 
-def min(scores):
+def calculate_minimum(scores):
     minimum = scores[0]
     for index in range(1, len(scores)):
         if minimum > scores[index]:
@@ -38,24 +36,28 @@ def min(scores):
     return minimum
 
 
-def avg(scores, amount):
+def calculate_average(scores, amount):
     total = 0
     for index in range(len(scores)):
         total += scores[index]
         average = total / amount
         
     return average
+
+
+def display_results(maximum, minimum, average):
+    print("The average for entered scores is", average)
+    print("The highest score from entered scores is", maximum)
+    print("The lowest score from entered scores is", minimum)
     
     
 def main():
     amount = get_amount()
     scores = get_scores(amount)    
-    maximum = max(scores)
-    minimum = min(scores)
-    average = avg(scores)    
-    print("Average for entered scores is: " + str(average))
-    print("Highest entered score is: " + str(maximum))
-    print("Lowest entered score is: " + str(minimum))
-    
-    
+    maximum = calculate_maximum(scores)
+    minimum = calculate_minimum(scores)
+    average = calculate_average(scores, amount)    
+    display_results(maximum, minimum, average)
+
+
 main()
