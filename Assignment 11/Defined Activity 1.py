@@ -17,7 +17,7 @@ def get_year():
     return year
 
 
-def calculate_monthdates(year):
+def calculate_month_dates(year):
     if (year % 400) == 0:
         monthdates = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     elif (year % 100) == 0:
@@ -30,13 +30,28 @@ def calculate_monthdates(year):
     return monthdates
 
 
-def display_array(month, year, monthdates):
+def calculate_month_name(month):
     months = ["January", "February", "March",
               "April", "May", "June",
               "July", "August", "September",
               "October", "November", "December"]
-    month = month - 1
-    print(months[month], year, "has", monthdates[month], "days")
+
+    if month < 1 or month > 12:
+        return "Unknown"
+    
+    return months[month - 1]
+
+
+def calculate_month_days(year, month):
+    if month < 1 or month > 12:
+        return "Unknown"
+
+    month_dates = calculate_month_dates(year)
+    return month_dates[month - 1]
+
+
+def display_results(month, year, month_days):
+    print(month, year, "has", month_days, "days")
     
 
 def main():
@@ -44,11 +59,14 @@ def main():
         year = get_year()
         if(year < 1582):
             break
+
         month = get_month()
         if(month > 12 or month < 1):
             break
-        monthdates = calculate_monthdates(year)
-        display_array(month, year, monthdates)
+
+        month_name = calculate_month_name(month)
+        month_days = calculate_month_days(year, month)
+        display_results(month_name, year, month_days)
    
    
 main()
