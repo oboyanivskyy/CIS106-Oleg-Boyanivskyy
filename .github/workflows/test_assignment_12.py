@@ -298,8 +298,8 @@ def test_assignment_12_activity_3_output():
         "average calculation output is incorrect.")
 
     test.check_source_code_output(
-        "Assignment 11",
-        "Fixed Activity 3",
+        "Assignment 12",
+        "Activity 3",
         "",
         "80\n90\n100\n-1\n",
         r"100.+?90.+?80.+?",

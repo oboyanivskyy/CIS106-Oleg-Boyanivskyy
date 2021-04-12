@@ -1277,18 +1277,19 @@ def check_source_code_operator_formatting(assignment, activity):
     else:
         text = re.sub(r"\/\/.*?\n", "\n", text)
 
-    pattern = r"\S[+\-\*\/=]\S|\S[+\-\*\/=]\s|\s[+\-\*\/=]\S"
-    matches = re.findall(pattern, text)
-    matches = sorted(list(set(matches)))
+    if ".py" not in filename:
+        pattern = r"\S[+\-\*\/=]\S|\S[+\-\*\/=]\s|\s[+\-\*\/=]\S"
+        matches = re.findall(pattern, text)
+        matches = sorted(list(set(matches)))
 
-    pattern = r"\+=|-=|\*=|\/=|<=|>=|==|!=|===|!==|-\w+|\+\+|--|\/\/"
-    for index in range(len(matches) - 1, -1, -1):
-        if re.search(pattern, matches[index]):
-            matches.remove(matches[index])
+        pattern = r"\+=|-=|\*=|\/=|<=|>=|==|!=|===|!==|-\w+|\+\+|--|\/\/"
+        for index in range(len(matches) - 1, -1, -1):
+            if re.search(pattern, matches[index]):
+                matches.remove(matches[index])
 
-    assert len(matches) == 0, \
-        f"{assignment} {filename} " \
-        f"is missing spaces around operators.\nFound: {matches}"
+        assert len(matches) == 0, \
+            f"{assignment} {filename} " \
+            f"is missing spaces around operators.\nFound: {matches}"
 
 
 def check_source_code_processing(assignment, activity, count):
