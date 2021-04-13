@@ -9,7 +9,7 @@ def get_scores():
     while True:
         print("Enter score:")
         number = int(input())
-        if n < 0:
+        if number < 0:
             break
         else:
             scores.append(number)
