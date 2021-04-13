@@ -8,10 +8,11 @@ def get_scores():
     scores = []
     while True:
         print("Enter score:")
-        n = int(input())
+        number = int(input())
         if n < 0:
             break
-        else: scores.append(n)
+        else:
+            scores.append(number)
 
     return scores
         

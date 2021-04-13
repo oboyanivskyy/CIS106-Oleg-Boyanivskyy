@@ -10,7 +10,7 @@ def start_game():
     return start
 
 
-def find_guess():
+def calculate_number():
     array = []
     start = 50
     start_range = 0
@@ -22,11 +22,11 @@ def find_guess():
             array.append(response)
             display_result(array, response)
             break
-        elif response == str("higher"):
+        elif response == str("h"):
             array.append(response)
             start_range = start
             start = round((start_range + end_range) / 2)
-        elif response == str("lower"):
+        elif response == str("l"):
             array.append(response)
             end_range = (end_range / 2)
             start = round((start_range + end_range) / 2)
@@ -41,7 +41,7 @@ def display_result(array, response):
 
 def main():
     start = start_game()
-    answer = find_guess()
+    calculate_number()
     
     
 main()
