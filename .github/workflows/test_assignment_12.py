@@ -100,7 +100,7 @@ def test_assignment_12_activity_1_output():
         "",
         "1\n2\n-1\n",
         r"2.+?(high|maximum)|(high|maximum).+?2",
-        "low output value or label is missing or incorrect. "
+        "high output value or label is missing or incorrect. "
             "Expected high: 2. "
             "Include output label on same line as result.")
 
@@ -274,7 +274,7 @@ def test_assignment_12_activity_3_output():
         "Activity 3",
         "",
         "1\n2\n-1\n",
-        r"1.+?low|low.+?1",
+        r"1.+?(low|minimum)|(low|minimum).+?1",
         "low output value or label is missing or incorrect. "
             "Expected low: 1. "
             "Include output label on same line as result.")
@@ -284,8 +284,8 @@ def test_assignment_12_activity_3_output():
         "Activity 3",
         "",
         "1\n2\n-1\n",
-        r"2.+?high|high.+?2",
-        "low output value or label is missing or incorrect. "
+        r"2.+?(high|maximum)|(high|maximum).+?2",
+        "high output value or label is missing or incorrect. "
             "Expected high: 2. "
             "Include output label on same line as result.")
 
