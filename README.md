@@ -46,3 +46,6 @@ For Assignment 11, we are pretty much done with the basic logic aspects of a pro
 
 ## Assignment 12
 
+For Assignment 12, we are now learning and applying our knowledge for dynamic arrays. After struggling a bit last week with getting the hang of arrays, it was easier to come back to them this week. I still was confused on certain parts, but the logic behind it is starting to make more sense as to how I should setup my programs. The issues arise when it comes to using my overall previous knowledge and it sometimes not working with the arrays since it is a list, and not an integer or string. The textbook examples help out when I need a reference to look at, or my previous activities. Overall, I have definitely improved a good amount since last week with Arrays.
+
+## Assignment 13
