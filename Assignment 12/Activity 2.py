@@ -2,23 +2,14 @@
 # between 0 to 100.
 
 
-def start_game():
-    print("Think of a number between 0 to 100.")
-    print("Once you have your number, press enter to continue.")
-    start = input(str())
-    
-    return start
-
-
 def calculate_number():
     array = []
     start = 50
     start_range = 0
     end_range = 100
     while True:
-        print("Is your number higher, lower, or equal to", start, "?")
-        response = input(float())
-        if response == str("equal"):
+        response = get_response(start)
+        if response == str("e"):
             array.append(response)
             display_result(array, response)
             break
@@ -33,14 +24,20 @@ def calculate_number():
         else:
             print("Invalid Response")
         
-        
+
+def get_response(start):
+    print("Is your number higher, lower, or equal to", start, "?")
+    response = input(float())
+    
+    return response
+
+    
 def display_result(array, response):
     print("I guessed your number!")
     print("These are the attempts it took me:", array)
 
 
 def main():
-    start = start_game()
     calculate_number()
     
     
