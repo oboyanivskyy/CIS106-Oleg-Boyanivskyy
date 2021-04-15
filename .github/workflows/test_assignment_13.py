@@ -63,22 +63,22 @@ def test_assignment_13_activity_1_output():
         "Activity 1",
         "",
         "Firstname Lastname\n",
-        r"Lastname, F.",
-        "Output is incorrect. Expected Lastname, F.")
+        r"\nLastname, F.\n",
+        "Output is incorrect. Expected 'Lastname, F.'")
 
     test.check_source_code_output(
         "Assignment 13",
         "Activity 1",
         "",
-        "  Firstname  Lastname  \n",
-        r"Lastname, F.",
-        "Output is incorrect. Expected Lastname, F.")
+        "   Firstname   Lastname   \n",
+        r"\nLastname, F.\n",
+        "Output is incorrect. Expected 'Lastname, F.'")
 
     test.check_source_code_output(
         "Assignment 13",
         "Activity 1",
         "",
-        "Firstname Middle Lastname\n",
+        "   Firstname   Middle   Lastname   \n",
         r"name",
         "Output is incorrect. Expected program to work with three name parts")
 
@@ -87,6 +87,14 @@ def test_assignment_13_activity_1_output():
         "Activity 1",
         "",
         "Firstname\n",
+        r"name",
+        "Output is incorrect. Expected program to work with one name part")
+
+    test.check_source_code_output(
+        "Assignment 13",
+        "Activity 1",
+        "",
+        "   Firstname   \n",
         r"name",
         "Output is incorrect. Expected program to work with one name part")
 
@@ -154,7 +162,8 @@ def test_assignment_13_activity_2_output():
         "",
         "  the  cat  in  the  hat  ",
         r"\ntah eht ni tac eht\n",
-        "Output is incorrect. Expected 'tah eht ni tac eht'")
+        "Output is incorrect. Expected 'tah eht ni tac eht'. "
+            "Check leading, trailing, and extra spaces.")
 
 
 def test_assignment_13_activity_3_source_code_comments():

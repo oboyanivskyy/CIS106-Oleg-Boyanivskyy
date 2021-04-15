@@ -1351,6 +1351,12 @@ def check_source_code_output(assignment, activity, file_pattern,
         pytest.skip()
         return
 
+    if ".py" in filename:
+        assert "Traceback" not in output, \
+            f"{assignment} {activity} {message}\n" \
+            f"Input:\n{input}\n" \
+            f"Output:\n{output}"
+
     regex = re.compile(output_pattern, re.IGNORECASE | re.DOTALL)
     match = regex.search(output)
     assert match, \
