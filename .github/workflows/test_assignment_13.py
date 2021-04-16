@@ -51,7 +51,7 @@ def test_assignment_13_activity_1_input_labels():
         "Assignment 13",
         "Activity 1",
         "",
-        "1\n2\n-1\n",
+        "Firstname Lastname\n",
         "name",
         "Input label(s) missing or incorrect. "
             "Expecting name.")
@@ -63,7 +63,7 @@ def test_assignment_13_activity_1_output():
         "Activity 1",
         "",
         "Firstname Lastname\n",
-        r"\nLastname, F.\n",
+        r"Lastname, F.\n",
         "Output is incorrect. Expected 'Lastname, F.'")
 
     test.check_source_code_output(
@@ -71,8 +71,9 @@ def test_assignment_13_activity_1_output():
         "Activity 1",
         "",
         "   Firstname   Lastname   \n",
-        r"\nLastname, F.\n",
-        "Output is incorrect. Expected 'Lastname, F.'")
+        r"Lastname, F.\n",
+        "Output is incorrect. Expected 'Lastname, F.' "
+            "Remove leading, trailing, and extra spaces.")
 
     test.check_source_code_output(
         "Assignment 13",
