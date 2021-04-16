@@ -162,7 +162,7 @@ def test_assignment_13_activity_2_output():
         "Activity 2",
         "",
         "  the  cat  in  the  hat  ",
-        r"\ntah eht ni tac eht\n",
+        r"tah eht ni tac eht\n",
         "Output is incorrect. Expected 'tah eht ni tac eht'. "
             "Check leading, trailing, and extra spaces.")
 
