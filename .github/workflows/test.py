@@ -727,7 +727,7 @@ def check_source_code_comma_formatting(assignment, activity):
         pytest.skip()
         return
 
-    filename = get_filename(path, activity + r"\.(cs|java|js|lua|py)")
+    filename = get_filename(path, activity + r"\.(cs|java|js|lua)")
     if not filename:
         pytest.skip()
         return
