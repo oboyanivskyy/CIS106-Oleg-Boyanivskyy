@@ -7,14 +7,17 @@ def get_name():
     while True:
         print("Enter name (first last):")
         name = input()
-        index = name.find("  ")
+        index = name.find(" ")
+        if index >= 1:
+            name.strip(" ")
+            break
         if index >= 0:
             break
     return name
 
 
 def get_first(name):
-    index = name.find("  ")
+    index = name.find(" ")
     if index < 0:
         first = ""
     else:
@@ -24,7 +27,7 @@ def get_first(name):
 
 
 def get_last(name):
-    index = name.find("  ")
+    index = name.find(" ")
     if index < 0:
         last = ""
     else:
