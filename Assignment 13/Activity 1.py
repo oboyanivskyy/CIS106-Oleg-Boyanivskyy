@@ -8,10 +8,9 @@ def get_name():
         print("Enter name (first last):")
         name = input()
         index = name.find(" ")
-        if index >= 1:
-            name.strip(" ")
-            break
         if index >= 0:
+            name = name.strip()
+            name = " ".join(name.split())
             break
     return name
 
