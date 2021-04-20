@@ -49,3 +49,7 @@ For Assignment 11, we are pretty much done with the basic logic aspects of a pro
 For Assignment 12, we are now learning and applying our knowledge for dynamic arrays. After struggling a bit last week with getting the hang of arrays, it was easier to come back to them this week. I still was confused on certain parts, but the logic behind it is starting to make more sense as to how I should setup my programs. The issues arise when it comes to using my overall previous knowledge and it sometimes not working with the arrays since it is a list, and not an integer or string. The textbook examples help out when I need a reference to look at, or my previous activities. Overall, I have definitely improved a good amount since last week with Arrays.
 
 ## Assignment 13
+
+For Assignment 13, we have moved on to learn more about Strings. This chapter felt similiar to what we learned in Arrays except that we can do different tasks and edit a string differently than you can with an Array. At first when I started to do the activities, I wasn't sure how I was supposed to get rid of spaces for a single string, but because of the commands already allowed in Python, it turned out being pretty simple. I think it was good to learn about this after learning Arrays, as the logic from Arrays helps understand Strings in the same way. Overall, this chapter definitely expanded my knowledge on Strings and how I can use them properly.
+
+## Assignment 14
