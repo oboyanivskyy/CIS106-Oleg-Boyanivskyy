@@ -14,7 +14,7 @@ def test_overall_folder_structure():
 
 def test_overall_file_structure():
     test.check_overall_file_structure(
-        pattern=r"readme.md|package-lock.json|\..*|.+?\.txt")
+        pattern=r"readme.md|package-lock.json|\..*")
 
 
 def test_readme_exists():

@@ -79,7 +79,7 @@ def test_assignment_13_activity_1_output():
         "Assignment 13",
         "Activity 1",
         "",
-        "   Firstname   Middle   Lastname   \n",
+        "   Firstname   Middle   Lastname   \nFirstname Lastname\n",
         r"name",
         "Output is incorrect. Expected program to work with three name parts")
 
@@ -87,7 +87,7 @@ def test_assignment_13_activity_1_output():
         "Assignment 13",
         "Activity 1",
         "",
-        "Firstname\n",
+        "Firstname\nFirstname Lastname\n",
         r"name",
         "Output is incorrect. Expected program to work with one name part")
 
@@ -95,7 +95,7 @@ def test_assignment_13_activity_1_output():
         "Assignment 13",
         "Activity 1",
         "",
-        "   Firstname   \n",
+        "   Firstname   \nFirstname Lastname\n",
         r"name",
         "Output is incorrect. Expected program to work with one name part")
 
@@ -103,15 +103,15 @@ def test_assignment_13_activity_1_output():
         "Assignment 13",
         "Activity 1",
         "",
-        "\n",
+        "\nFirstname Lastname\n",
         r"name",
         "Output is incorrect. Expected program to work with no name part")
 
     test.check_source_code_output(
         "Assignment 13",
         "Activity 1",
-        "   ",
-        "\n",
+        "",
+        "   \nFirstname Lastname\n",
         r"name",
         "Output is incorrect. Expected program to work with blank name")
 

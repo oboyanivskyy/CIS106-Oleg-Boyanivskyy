@@ -4,11 +4,26 @@ import os
 import test
 
 
+def setup_module(module):
+    pass
+
+
+def teardown_module(module):
+    files = [
+        "addresses.txt",
+        "scores.txt"
+    ]
+
+    for file in files:
+        if os.path.exists(file):
+            os.remove(file)
+
+
 def test_assignment_14_folder_structure():
     test.check_assignment_folder_structure(
         "Assignment 14",
         r"activity[ _]?#?\d\.(class|cs|java|js|lua|py)|"
-        "package-lock.json|test.csproj|scores.txt|addresses.txt")
+        "package-lock.json|test.csproj")
 
 
 def test_assignment_14_required_source_code_files():

@@ -1351,6 +1351,12 @@ def check_source_code_output(assignment, activity, file_pattern,
         pytest.skip()
         return
 
+    if ".cs" in filename:
+        assert "exception" not in output, \
+            f"{assignment} {activity} {message}\n" \
+            f"Input:\n{input}\n" \
+            f"Output:\n{output}"
+
     if ".py" in filename:
         assert "Traceback" not in output, \
             f"{assignment} {activity} {message}\n" \
@@ -1455,9 +1461,8 @@ def get_csharp_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input,
-                f"{exception.output}\n"
-                f"{exception.stderr}")
+            output = f"{exception.output}\n{exception.stderr}"
+            output_cache(path, filename, input, output)
 
     return output
 
@@ -1621,10 +1626,9 @@ def get_java_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input,
-                f"{exception.output}\n"
-                f"{exception.stderr}")
-
+            output = f"{exception.output}\n{exception.stderr}"
+            output_cache(path, filename, input, output)
+    
     return output
 
 
@@ -1706,9 +1710,8 @@ def get_javascript_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input,
-                f"{exception.output}\n"
-                f"{exception.stderr}")
+            output = f"{exception.output}\n{exception.stderr}"
+            output_cache(path, filename, input, output)
 
     return output
 
@@ -1788,9 +1791,8 @@ def get_lua_output(assignment, activity, input):
                 text=True)
             output_cache(path, filename, input, output)
         except subprocess.CalledProcessError as exception:
-            output_cache(path, filename, input,
-                f"{exception.output}\n"
-                f"{exception.stderr}")
+            output = f"{exception.output}\n{exception.stderr}"
+            output_cache(path, filename, input, output)
 
     return output
 
