@@ -223,10 +223,9 @@ def test_assignment_13_activity_3_output():
         "Assignment 13",
         "Activity 3",
         "",
-        "  this  ,  is  ,  another  ,  test  \n",
-        "this\nis\nanother\ntest",
-        "Output is incorrect. Expecting:\nthis\nis\nanother\ntest")
-
+        "this is, another test\n",
+        "this is\nanother test",
+        "Output is incorrect. Expecting:\nthis is\nanother test")
 
     test.check_source_code_output(
         "Assignment 13",
