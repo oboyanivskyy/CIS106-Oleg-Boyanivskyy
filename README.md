@@ -53,3 +53,7 @@ For Assignment 12, we are now learning and applying our knowledge for dynamic ar
 For Assignment 13, we have moved on to learn more about Strings. This chapter felt similiar to what we learned in Arrays except that we can do different tasks and edit a string differently than you can with an Array. At first when I started to do the activities, I wasn't sure how I was supposed to get rid of spaces for a single string, but because of the commands already allowed in Python, it turned out being pretty simple. I think it was good to learn about this after learning Arrays, as the logic from Arrays helps understand Strings in the same way. Overall, this chapter definitely expanded my knowledge on Strings and how I can use them properly.
 
 ## Assignment 14
+
+In Assignment 14, we continue on the same chapter of Strings, but moving on to files and how to read and write into them. I was having some difficult understanding how opening, reading, and writing files worked, but after looking at some examples and some videos, it became a little easier. The biggest issue I'm running accross with this session is with errors, and how to properly show them so that Actions recognizes that particular error. Besides that, I think I feel okay with being able to read a file's data, and be able to use that data in the program itself.
+
+## Assignment 15
