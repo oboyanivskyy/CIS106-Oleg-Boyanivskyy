@@ -173,7 +173,7 @@ def test_assignment_14_activity_2_output():
         "",
         r"100.+?(high|maximum)|(high|maximum).+?100",
         "high output value or label is missing or incorrect. "
-            "Expected high: 2. "
+            "Expected high: 100. "
             "Include output label on same line as result.")
 
     test.check_source_code_output(
@@ -183,7 +183,7 @@ def test_assignment_14_activity_2_output():
         "",
         r"0.+?(low|minimum)|(low|minimum).+?0",
         "low output value or label is missing or incorrect. "
-            "Expected low: 1. "
+            "Expected low: 0. "
             "Include output label on same line as result.")
 
     test.check_source_code_output(
