@@ -12,12 +12,15 @@ def read_file(filename):
             for line in file:
                 line = line.strip()
                 print(line)
-                numeric_filter = filter(str.isdigit, line)
-                line = "".join(numeric_filter)
-                if line == "":
+                if line == "Name,Score":
                     pass
                 else:
-                    scores.append(line)
+                    numeric_filter = filter(str.isdigit, line)
+                    line = "".join(numeric_filter)
+                    if line == "":
+                        sys.exit("Error: Missing or bad data")
+                    else:
+                        scores.append(line)
         scores = list(map(int, scores))
         print(scores)
     except:
@@ -64,14 +67,16 @@ def display_results(maximum, minimum, average):
 def main():
     filename = "scores.txt"
     
-    if os.path.isfile(filename):
+    if os.stat(filename).st_size == 0:
+        print("File is empty")
+    elif os.path.isfile(filename):
         scores = read_file(filename)
         maximum = calculate_max(scores)
         minimum = calculate_minimum(scores)
         average = calculate_average(scores)
         display_results(maximum, minimum, average)
     else:
-        print("Need scores.txt to run program")
+        print("Missing file")
         
 
 main()
