@@ -76,7 +76,7 @@ def main():
         average = calculate_average(scores)
         display_results(maximum, minimum, average)
     else:
-        print("Missing file")
+        print("File is missing")
         
 
 main()
