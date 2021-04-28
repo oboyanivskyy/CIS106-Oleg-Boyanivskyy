@@ -373,10 +373,10 @@ def test_assignment_14_activity_3_output():
         "",
         "html.txt\n",
         r"Strings and Files\nThis is a bold paragraph.\n"
-            ".*?<h1>\n</h1>\n<p>\n<strong>\n</strong>\n</p>",
+            r".*?<h1>\n</h1>\n<p>\n<strong>\n</strong>\n</p>",
         "Output is incorrect. Expecting:\n"
             "Strings and Files\nThis is a bold paragraph.\n"
-            ".*?<h1>\n</h1>\n<p>\n<strong>\n</strong>\n</p>")
+            "<h1>\n</h1>\n<p>\n<strong>\n</strong>\n</p>")
 
     if os.path.exists("html.txt"):
         os.remove("html.txt")
@@ -422,7 +422,7 @@ def test_assignment_14_activity_4_output():
         file.write("Firstname2 Lastname2\n")
         file.write("222 Any Street\n")
         file.write("City 2, 22 22222\n\n")
-        file.write("Firstname1 Lastname1\n")
+        file.write("Firstname3 Lastname3\n")
         file.write("333 Any Street\n")
         file.write("City 3, 333 33333\n\n")
 
