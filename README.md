@@ -54,6 +54,6 @@ For Assignment 13, we have moved on to learn more about Strings. This chapter fe
 
 ## Assignment 14
 
-In Assignment 14, we continue on the same chapter of Strings, but moving on to files and how to read and write into them. I was having some difficult understanding how opening, reading, and writing files worked, but after looking at some examples and some videos, it became a little easier. The biggest issue I'm running accross with this session is with errors, and how to properly show them so that Actions recognizes that particular error. Besides that, I think I feel okay with being able to read a file's data, and be able to use that data in the program itself.
+In Assignment 14, we continue on the same chapter of Strings, but moving on to files and how to read and write into them. I was having some difficulty understanding how opening, reading, and writing files worked, but after looking at some examples and some videos, it became a little easier. The biggest issue I'm running accross with this session is with errors, and how to properly show them so that Actions recognizes that particular error. Besides that, I think I feel okay with being able to read a file's data, and be able to use that data in the program itself.
 
 ## Assignment 15
