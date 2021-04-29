@@ -187,7 +187,6 @@ def test_readme_check_spelling():
         "strenghtened",
         "strtch",
         "stucture",
-        "submitt",
         "suppsoed",
         "syas",
         "taks",

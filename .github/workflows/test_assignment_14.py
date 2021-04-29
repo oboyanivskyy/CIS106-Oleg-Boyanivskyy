@@ -59,10 +59,6 @@ def test_assignment_14_activity_1_source_code_operator_formatting():
     test.check_source_code_operator_formatting("Assignment 14", "Activity 1")
 
 
-def test_assignment_14_activity_1_source_code_comma_formatting():
-    test.check_source_code_comma_formatting("Assignment 14", "Activity 1")
-
-
 def test_assignment_14_activity_1_output():
     with open("scores.txt", "w") as file:
         file.write("Name,Score\n")
@@ -150,10 +146,6 @@ def test_assignment_14_activity_2_source_code_identifier_length():
 
 def test_assignment_14_activity_2_source_code_operator_formatting():
     test.check_source_code_operator_formatting("Assignment 14", "Activity 2")
-
-
-def test_assignment_14_activity_2_source_code_comma_formatting():
-    test.check_source_code_comma_formatting("Assignment 14", "Activity 2")
 
 
 def test_assignment_14_activity_2_output():
@@ -340,10 +332,6 @@ def test_assignment_14_activity_3_source_code_operator_formatting():
     test.check_source_code_operator_formatting("Assignment 14", "Activity 3")
 
 
-def test_assignment_14_activity_3_source_code_comma_formatting():
-    test.check_source_code_comma_formatting("Assignment 14", "Activity 3")
-
-
 def test_assignment_14_activity_3_input_labels():
     with open("html.txt", "w") as file:
         file.write("<h1>Strings and Files</h1>\n")
@@ -410,10 +398,6 @@ def test_assignment_14_activity_4_source_code_operator_formatting():
     test.check_source_code_operator_formatting("Assignment 14", "Activity 4")
 
 
-def test_assignment_14_activity_4_source_code_comma_formatting():
-    test.check_source_code_comma_formatting("Assignment 14", "Activity 4")
-
-
 def test_assignment_14_activity_4_output():
     with open("addresses.txt", "w") as file:
         file.write("Firstname1 Lastname1\n")
@@ -424,7 +408,7 @@ def test_assignment_14_activity_4_output():
         file.write("City 2, 22 22222\n\n")
         file.write("Firstname3 Lastname3\n")
         file.write("333 Any Street\n")
-        file.write("City 3, 333 33333\n\n")
+        file.write("City 3, 33 33333\n\n")
 
     test.check_source_code_output(
         "Assignment 14",
