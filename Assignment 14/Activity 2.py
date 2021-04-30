@@ -7,25 +7,21 @@ import sys
 
 def read_file(filename):
     scores = []
-    try:
-        with open(filename, "r") as file:
-            for line in file:
-                line = line.strip()
-                print(line)
-                if line == "Name,Score":
-                    pass
-                else:
-                    numeric_filter = filter(str.isdigit, line)
-                    line = "".join(numeric_filter)
-                    if line == "":
-                        sys.exit("Error: Missing or bad data")
-                    else:
-                        scores.append(line)
-        scores = list(map(int, scores))
-        print(scores)
-    except:
-        print("Error reading", filename)
-        print(sys.exc_info()[1])
+    with open(filename, "r") as file:
+        for line in file:
+            line = line.strip()
+            if line == "Name,Score":
+                pass
+            else:
+                numeric_filter = filter(str.isdigit, line)
+                line = "".join(numeric_filter)
+                scores.append(line)
+    scores = list(map(int, scores))
+    with open(filename, "r") as file:
+        for line in file:
+            line = line.strip()
+            print(line)
+    print(scores)
     
     return scores
 
@@ -66,16 +62,19 @@ def display_results(maximum, minimum, average):
     
 def main():
     filename = "scores.txt"
-    
-    if os.stat(filename).st_size == 0:
-        print("File is empty")
-    elif os.path.isfile(filename):
+    try:
         scores = read_file(filename)
         maximum = calculate_max(scores)
         minimum = calculate_minimum(scores)
         average = calculate_average(scores)
         display_results(maximum, minimum, average)
-    else:
+    except TypeError:
+        print("Error: Missing or bad data")
+    except ValueError:
+        print("Error: Missing or bad data")
+    except IndexError:
+        print("File is empty")
+    except FileNotFoundError:
         print("File is missing")
         
 
