@@ -1,8 +1,6 @@
 # This program will copy a list of names and grade scores
 # into a text file and then display high, low, and average
 # scores.
-import os
-import sys
 
 
 def read_file(filename):
