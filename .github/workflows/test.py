@@ -908,7 +908,8 @@ def check_required_files(assignment, file_extension, count):
         return
 
     description = get_file_type(file_extension)
-    pattern = r"activity[ _]?#?\d\." + file_extension
+    pattern = r"activity[ _]?#?\d\." + file_extension + "|" + \
+        r"final[ _]project." + file_extension
     files = get_files(path, pattern)
     assert len(files) >= count, \
         f"{assignment} requires {count} {description} file(s). " \
