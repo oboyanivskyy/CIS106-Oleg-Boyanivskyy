@@ -66,7 +66,6 @@ def test_readme_check_spelling():
         "assignmnent",
         "assingment",
         "atractive",
-        "azadehtehrany",
         "blunty",
         "bumby",
         "calculuations",

@@ -73,7 +73,7 @@ def test_final_project_output():
         "Final Project",
         "",
         "",
-        "Empire Burlesque - Bob Dylan - USA - 10.90 - 1985",
+        r"Empire Burlesque - Bob Dylan - USA - \$?10.90 - 1985",
         "Expected first line to match:\n"
             "Empire Burlesque - Bob Dylan - USA - 10.90 - 1985"
     )
@@ -92,7 +92,7 @@ def test_final_project_output():
         os.remove("cd_catalog.xml")
 
 
-def test_assignment_14_activity_2_missing_file():
+def test_final_project_missing_file():
     if os.path.exists("cd_catalog.xml"):
         os.remove("cd_catalog.xml")
 
@@ -106,7 +106,7 @@ def test_assignment_14_activity_2_missing_file():
             "Expected 'File is missing'.")
 
 
-def test_assignment_14_activity_2_empty_file():
+def test_final_project_empty_file():
     with open("cd_catalog.xml", "w") as file:
         file.write("")
 
@@ -123,7 +123,7 @@ def test_assignment_14_activity_2_empty_file():
         os.remove("cd_catalog.xml")
 
 
-def test_assignment_14_activity_2_no_records():
+def test_final_project_no_records():
     with open("cd_catalog.xml", "w") as file:
         file.write("<?xml version=""1.0"" encoding=""UTF-8""?>")
         file.write("<CATALOG>")
@@ -143,10 +143,10 @@ def test_assignment_14_activity_2_no_records():
         os.remove("cd_catalog.xml")
 
 
-def test_assignment_14_activity_2_missing_fields():
+def test_final_project_missing_fields():
     url = "https://www.w3schools.com/xml/cd_catalog.xml"
     text = urllib.request.urlopen(url).read().decode()
-    text = text.replace("    <ARTIST>Bob Dylan</ARTIST>\n", "")
+    text = text.replace("    <ARTIST>Bob Dylan</ARTIST>\r\n", "")
     with open("cd_catalog.xml", "w") as file:
         file.write(text)
 
@@ -163,7 +163,7 @@ def test_assignment_14_activity_2_missing_fields():
         os.remove("cd_catalog.xml")
 
 
-def test_assignment_14_activity_2_bad_data():
+def test_final_project_bad_data():
     url = "https://www.w3schools.com/xml/cd_catalog.xml"
     text = urllib.request.urlopen(url).read().decode()
     text = text.replace("<PRICE>10.90</PRICE>", "<PRICE>x</PRICE>")
@@ -181,3 +181,44 @@ def test_assignment_14_activity_2_bad_data():
 
     if os.path.exists("cd_catalog.xml"):
         os.remove("cd_catalog.xml")
+
+
+def test_final_project_source_code_error_handling():
+    test.check_file_contains(
+        "Final Project",
+        "Final Project",
+        r"(cs|java|js)",
+        "try",
+        "include try/catch error handling for file processing.")
+
+    test.check_file_contains(
+        "Final Project",
+        "Final Project",
+        r"(cs|java|js)",
+        "catch",
+        "include try/catch error handling for file processing.")
+
+
+def test_final_project_lua_error_handling():
+    test.check_file_contains(
+        "Final Project",
+        "Final Project",
+        "lua",
+        "pcall",
+        "include pcall error handling for file processing.")
+
+
+def test_final_project_python_error_handling():
+    test.check_file_contains(
+        "Final Project",
+        "Final Project",
+        "py",
+        "try",
+        "include try/except error handling for file processing.")
+
+    test.check_file_contains(
+        "Final Project",
+        "Final Project",
+        "py",
+        "except",
+        "include try/except error handling for file processing.")
