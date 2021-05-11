@@ -57,11 +57,25 @@ def get_year(year, line):
         pass
     
 
-def display_array(title, artist, country, company, price, year):
+def display_results(title, artist, country, company, price, year, average):
     index = 0
+    print(price)
     for index in range(len(title)):
         print(title[index], "-", artist[index], "-", country[index], "-",
               price[index], "-", year[index])
+    print(len(title), "items", "-", "$", average, "average price")
+
+def calculate_average(price):
+    total = 0
+    average = 0
+    for index in range(0, len(price)):
+        price[index] = float(price[index])
+    for index in range(len(price)):
+        total += price[index]
+        average = sum(price) / len(price)
+        average = str(round(average, 2))
+        
+    return average
 
 def read_data(filename):
     title = []
@@ -79,8 +93,11 @@ def read_data(filename):
             get_company(company, line)            
             get_price(price, line)
             get_year(year, line)
-    display_array(title, artist, country, company, price, year)
-            
+    average = calculate_average(price)
+    display_results(title, artist, country,
+                    company, price, year, average)
+
+
 def main():
     filename = "cd_catalog.xml"
 #    try:
