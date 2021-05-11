@@ -56,4 +56,8 @@ For Assignment 13, we have moved on to learn more about Strings. This chapter fe
 
 In Assignment 14, we continue on the same chapter of Strings, but moving on to files and how to read and write into them. I was having some difficulty understanding how opening, reading, and writing files worked, but after looking at some examples and some videos, it became a little easier. The biggest issue I'm running accross with this session is with errors, and how to properly show them so that Actions recognizes that particular error. Besides that, I think I feel okay with being able to read a file's data, and be able to use that data in the program itself.
 
-## Assignment 15
+## Final Project
+
+For the Final Project, we are pretty much at the end of the class and we are taking everything we learned throughout the semester and combining it into one big assignment. I enjoyed going back to my old code and assignments to see how far I have come, and how different my code looks now compared to before. I'm definitely no professional, but I do admit that I feel a lot better with the logic of coding than I did before. One of the biggest things I learned from this class is that you have to take into account every single part of the code and make sure that it is all connected, otherwise it simply won't work. I intend to use this learning as a beginning to build off of in the future when I finish my Computer Science degree and go into the work force. Thank you professor for your teachings, I truely enjoyed taking this class.
+
+
