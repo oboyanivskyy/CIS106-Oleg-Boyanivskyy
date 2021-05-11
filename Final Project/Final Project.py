@@ -15,7 +15,7 @@ def get_title(title, line):
 def get_artist(artist, line):    
     if line.find("ARTIST") == True:
         line = line.replace("<ARTIST>", "")
-        line = line.replace("</ARTIST", "")
+        line = line.replace("</ARTIST>", "")
         artist.append(line)
     else:
         pass
@@ -56,7 +56,13 @@ def get_year(year, line):
     else:
         pass
     
-    
+
+def display_array(title, artist, country, company, price, year):
+    index = 0
+    for index in range(len(title)):
+        print(title[index], "-", artist[index], "-", country[index], "-",
+              price[index], "-", year[index])
+
 def read_data(filename):
     title = []
     artist = []
@@ -73,7 +79,7 @@ def read_data(filename):
             get_company(company, line)            
             get_price(price, line)
             get_year(year, line)
-
+    display_array(title, artist, country, company, price, year)
             
 def main():
     filename = "cd_catalog.xml"
