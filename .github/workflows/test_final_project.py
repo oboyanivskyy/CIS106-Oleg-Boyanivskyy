@@ -1,6 +1,7 @@
 # Test Final Project.
 
 import os
+import re
 import test
 import urllib.request
 
@@ -73,9 +74,19 @@ def test_final_project_output():
         "Final Project",
         "",
         "",
-        r"Empire Burlesque - Bob Dylan - USA - \$?10.90 - 1985",
+        r"Empire Burlesque( - |\s*)Bob Dylan( - |\s*)USA( - |\s*)\$?10.90( - |\s*)1985",
         "Expected first line to match:\n"
             "Empire Burlesque - Bob Dylan - USA - 10.90 - 1985"
+    )
+
+    test.check_source_code_output(
+        "Final Project",
+        "Final Project",
+        "",
+        "",
+        r"Unchain my heart( - |\s*)Joe Cocker( - |\s*)USA( - |\s*)\$?8.20( - |\s*)1987",
+        "Expected last line to match:\n"
+            "Unchain my heart - Joe Cocker - USA - 8.20 - 1987"
     )
 
     test.check_source_code_output(
@@ -86,6 +97,28 @@ def test_final_project_output():
         r"26.+?9\.12",
         "Expected total line to contain:\n"
             "26 items - $9.12 average price"
+    )
+
+    if os.path.exists("cd_catalog.xml"):
+        os.remove("cd_catalog.xml")
+
+
+def test_final_project_two_records():
+    url = "https://www.w3schools.com/xml/cd_catalog.xml"
+    text = urllib.request.urlopen(url).read().decode()
+    text = re.sub("<TITLE>Hide.+?<TITLE>Unchain", 
+        "<TITLE>Unchain", text, flags=re.DOTALL)
+    with open("cd_catalog.xml", "w") as file:
+        file.write(text)
+
+    test.check_source_code_output(
+        "Final Project",
+        "Final Project",
+        "",
+        "two records",
+        r"2.+?9\.55",
+        "Expected total line to contain:\n"
+            "2 items - $9.55 average price"
     )
 
     if os.path.exists("cd_catalog.xml"):
@@ -181,6 +214,22 @@ def test_final_project_bad_data():
 
     if os.path.exists("cd_catalog.xml"):
         os.remove("cd_catalog.xml")
+
+
+def test_final_project_python_does_not_use_dictionaries():
+    test.check_file_does_not_contain(
+        "Final Project",
+        "Final Project",
+        r"py",
+        r"\[\".+?\"\]",
+        "must use parallel arrays rather than dictionaries.")
+
+    test.check_file_does_not_contain(
+        "Final Project",
+        "Final Project",
+        r"py",
+        r"\[\'.+?\'\]",
+        "must use parallel arrays rather than dictionaries.")
 
 
 def test_final_project_source_code_error_handling():
