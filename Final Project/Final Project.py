@@ -74,7 +74,7 @@ def calculate_average(price):
         total += price[index]
         average = sum(price) / len(price)
         average = str(round(average, 2))
-        
+    
     return average
 
 
@@ -94,23 +94,25 @@ def read_data(filename):
             get_company(company, line)            
             get_price(price, line)
             get_year(year, line)
-    average = calculate_average(price)
-    display_results(title, artist, country,
-                    company, price, year, average)
+    
+    return (title, artist, country, company, price, year)
 
 
 def main():
     filename = "cd_catalog.xml"
-    try:
-        read_data(filename)
-    except TypeError:
-       print("Error: Missing or bad data")
-    except ValueError:
-        print("Error: Missing or bad data")
-    except IndexError:
-        print("File is empty")
-    except FileNotFoundError:
-        print("File is missing")
+#    try:
+    title, artist, country, company, price, year = read_data(filename)
+    average = calculate_average(price)
+    display_results(title, artist, country,
+                    company, price, year, average)
+#    except TypeError:
+#       print("Error: Missing or bad data")
+#    except ValueError:
+#        print("Error: Missing or bad data")
+#    except IndexError:
+#        print("File is empty")
+#    except FileNotFoundError:
+#        print("File is missing")
 
 
 main()
