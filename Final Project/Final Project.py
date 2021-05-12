@@ -3,6 +3,9 @@
 # display the menu items.
 
 
+import os
+
+
 def get_title(title, line):    
     if line.find("TITLE") == True:
         line = line.replace("<TITLE>", "")
@@ -101,10 +104,13 @@ def read_data(filename):
 def main():
     filename = "cd_catalog.xml"
     try:
-        title, artist, country, company, price, year = read_data(filename)
-        average = calculate_average(price)
-        display_results(title, artist, country,
-                    company, price, year, average)
+        if os.stat(filename).st_size > 0:
+            title, artist, country, company, price, year = read_data(filename)
+            average = calculate_average(price)
+            display_results(title, artist, country,
+                        company, price, year, average)
+        else:
+            print("File is empty")
     except TypeError:
        print("Error: Missing or bad data")
     except ValueError:
