@@ -100,19 +100,19 @@ def read_data(filename):
 
 def main():
     filename = "cd_catalog.xml"
-#    try:
-    title, artist, country, company, price, year = read_data(filename)
-    average = calculate_average(price)
-    display_results(title, artist, country,
+    try:
+        title, artist, country, company, price, year = read_data(filename)
+        average = calculate_average(price)
+        display_results(title, artist, country,
                     company, price, year, average)
-#    except TypeError:
-#       print("Error: Missing or bad data")
-#    except ValueError:
-#        print("Error: Missing or bad data")
-#    except IndexError:
-#        print("File is empty")
-#    except FileNotFoundError:
-#        print("File is missing")
+    except TypeError:
+       print("Error: Missing or bad data")
+    except ValueError:
+        print("Error: Missing or bad data")
+    except IndexError:
+        print("File is empty")
+    except FileNotFoundError:
+        print("File is missing")
 
 
 main()
