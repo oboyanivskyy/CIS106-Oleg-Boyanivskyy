@@ -109,7 +109,7 @@ def main():
         display_results(title, artist, country,
                         company, price, price1, year, average)
     except TypeError:
-       print("Error: Missing or bad data")
+        print("Error: Missing or bad data")
     except ValueError:
         print("Error: Missing or bad data")
     except IndexError:
