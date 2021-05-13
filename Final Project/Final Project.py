@@ -7,7 +7,7 @@ import os
 
 
 def get_title(title, line):    
-    if line.find("TITLE") == True:
+    if line.find("TITLE") != -1:
         line = line.replace("<TITLE>", "")
         line = line.replace("</TITLE>", "")
         title.append(line)
@@ -16,7 +16,7 @@ def get_title(title, line):
 
 
 def get_artist(artist, line):    
-    if line.find("ARTIST") == True:
+    if line.find("ARTIST") != -1:
         line = line.replace("<ARTIST>", "")
         line = line.replace("</ARTIST>", "")
         artist.append(line)
@@ -25,7 +25,7 @@ def get_artist(artist, line):
 
 
 def get_country(country, line):    
-    if line.find("COUNTRY") == True:
+    if line.find("COUNTRY") != -1:
         line = line.replace("<COUNTRY>", "")
         line = line.replace("</COUNTRY>", "")
         country.append(line)
@@ -34,7 +34,7 @@ def get_country(country, line):
     
 
 def get_company(company, line):    
-    if line.find("COMPANY") == True:
+    if line.find("COMPANY") != -1:
         line = line.replace("<COMPANY>", "")
         line = line.replace("</COMPANY>", "")
         company.append(line)
@@ -43,7 +43,7 @@ def get_company(company, line):
     
     
 def get_price(price, line):    
-    if line.find("PRICE") == True:
+    if line.find("PRICE") != -1:
         line = line.replace("<PRICE>", "")
         line = line.replace("</PRICE>", "")
         price.append(line)
@@ -52,7 +52,7 @@ def get_price(price, line):
 
 
 def get_year(year, line):    
-    if line.find("YEAR") == True:
+    if line.find("YEAR") != -1:
         line = line.replace("<YEAR>", "")
         line = line.replace("</YEAR>", "")
         year.append(line)
@@ -107,13 +107,10 @@ def read_data(filename):
 def main():
     filename = "cd_catalog.xml"
     try:
-        if os.stat(filename).st_size > 0:
-            title, artist, country, company, price, year = read_data(filename)
-            average, price1 = calculate_average(price)
-            display_results(title, artist, country,
+        title, artist, country, company, price, year = read_data(filename)
+        average, price1 = calculate_average(price)
+        display_results(title, artist, country,
                         company, price, price1, year, average)
-        else:
-            print("File is empty")
     except TypeError:
        print("Error: Missing or bad data")
     except ValueError:
