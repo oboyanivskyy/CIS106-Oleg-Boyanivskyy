@@ -3,9 +3,6 @@
 # display the menu items.
 
 
-import os
-
-
 def get_title(title, line):    
     if line.find("TITLE") != -1:
         line = line.replace("<TITLE>", "")
@@ -60,12 +57,12 @@ def get_year(year, line):
         pass
     
 
-def display_results(title, artist, country, company, price, price1, year, average):
+def display_results(title, artist, country, company,
+                    price, price1, year, average):
     for index in range(len(title)):
         print(title[index], "-", artist[index], "-", country[index], "-",
               price1[index], "-", year[index])
     print(len(title), "items", "-", "$", average, "average price")
-
 
 
 def calculate_average(price):
