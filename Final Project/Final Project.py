@@ -108,8 +108,6 @@ def main():
         average, price1 = calculate_average(price)
         display_results(title, artist, country,
                         company, price, price1, year, average)
-    except title == 0:
-        print("File is empty")
     except TypeError:
         print("Error: Missing or bad data")
     except ValueError:
