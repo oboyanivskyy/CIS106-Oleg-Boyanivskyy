@@ -116,6 +116,8 @@ def main():
         print("File is empty")
     except FileNotFoundError:
         print("File is missing")
+    except average == 0:
+        print("File is empty")
 
 
 main()
