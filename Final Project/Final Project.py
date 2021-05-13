@@ -60,15 +60,18 @@ def get_year(year, line):
         pass
     
 
-def display_results(title, artist, country, company, price, year, average):
-    index = 0
+def display_results(title, artist, country, company, price, price1, year, average):
     for index in range(len(title)):
         print(title[index], "-", artist[index], "-", country[index], "-",
-              price[index], "-", year[index])
+              price1[index], "-", year[index])
     print(len(title), "items", "-", "$", average, "average price")
 
 
+
 def calculate_average(price):
+    price1 = [None] * len(price)
+    for index in range(0, len(price)):
+        price1[index] = price[index]
     total = 0
     average = 0
     for index in range(0, len(price)):
@@ -77,8 +80,8 @@ def calculate_average(price):
         total += price[index]
         average = sum(price) / len(price)
         average = str(round(average, 2))
-    
-    return average
+
+    return average, price1
 
 
 def read_data(filename):
@@ -97,7 +100,7 @@ def read_data(filename):
             get_company(company, line)            
             get_price(price, line)
             get_year(year, line)
-    
+
     return (title, artist, country, company, price, year)
 
 
@@ -106,9 +109,9 @@ def main():
     try:
         if os.stat(filename).st_size > 0:
             title, artist, country, company, price, year = read_data(filename)
-            average = calculate_average(price)
+            average, price1 = calculate_average(price)
             display_results(title, artist, country,
-                        company, price, year, average)
+                        company, price, price1, year, average)
         else:
             print("File is empty")
     except TypeError:
